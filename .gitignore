@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Build output
+.nuxt/
+.output/
+dist/
+build/
+.strapi/
+
+# Local data and uploads
+.tmp/
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+apps/cms/public/uploads/*
+!apps/cms/public/uploads/.gitkeep
+
+# Logs and caches
+*.log
+*.tsbuildinfo
+.eslintcache
+.cache/
+coverage/
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

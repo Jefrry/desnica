@@ -1,0 +1,23 @@
+{
+  "name": "desnica",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@11.19.0",
+  "engines": {
+    "node": ">=22.0.0 <=26.x.x",
+    "pnpm": ">=11.0.0"
+  },
+  "scripts": {
+    "dev": "pnpm --parallel --filter @desnica/web --filter @desnica/cms dev",
+    "build": "pnpm --recursive --filter @desnica/web --filter @desnica/cms build",
+    "lint": "eslint apps --max-warnings=0",
+    "typecheck": "pnpm --recursive --filter @desnica/web --filter @desnica/cms typecheck"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.39.5",
+    "eslint": "9.39.5",
+    "eslint-plugin-vue": "10.11.1",
+    "globals": "16.5.0",
+    "typescript-eslint": "8.70.1"
+  }
+}
