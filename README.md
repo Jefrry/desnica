@@ -23,6 +23,8 @@
 - Node.js 22–26;
 - pnpm 11+.
 
+Для контейнерного запуска нужен Docker с Compose v2.
+
 ## Установка
 
 ```bash
@@ -51,6 +53,37 @@ pnpm dev
 ```bash
 pnpm --filter @desnica/web dev
 pnpm --filter @desnica/cms dev
+```
+
+## Docker Compose
+
+Локально стек можно запустить без дополнительной настройки (значения по умолчанию
+предназначены только для разработки):
+
+```bash
+docker compose build
+docker compose up -d
+docker compose ps
+```
+
+- Nuxt: http://localhost:3000
+- Strapi: http://localhost:1337/admin
+- PostgreSQL доступен сервисам во внутренней сети Compose.
+
+Данные PostgreSQL хранятся в именованном volume `postgres_data`, а загруженные
+в Strapi файлы — в `cms_uploads`. Обычный `docker compose down` и пересоздание
+контейнеров не удаляют эти данные. Команда `docker compose down -v` удаляет оба
+volume вместе с данными.
+
+Перед production-запуском скопируйте `.env.example` в `.env`, замените все
+секреты и пароль базы длинными случайными значениями, задайте публичные URL и,
+если TLS завершается на reverse proxy, установите `IS_PROXIED=true`. База данных
+на порт хоста намеренно не публикуется.
+
+Остановить стек:
+
+```bash
+docker compose down
 ```
 
 ## Проверки

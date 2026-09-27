@@ -1,0 +1,91 @@
+name: desnica
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DATABASE_NAME:-strapi}
+      POSTGRES_USER: ${DATABASE_USERNAME:-strapi}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-strapi-local-password}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    security_opt:
+      - no-new-privileges:true
+
+  cms:
+    build:
+      context: .
+      dockerfile: apps/cms/Dockerfile
+    restart: unless-stopped
+    init: true
+    environment:
+      NODE_ENV: production
+      STRAPI_TELEMETRY_DISABLED: "true"
+      HOST: 0.0.0.0
+      PORT: 1337
+      PUBLIC_URL: ${PUBLIC_URL:-http://localhost:1337}
+      APP_KEYS: ${APP_KEYS:-local-app-key-1,local-app-key-2,local-app-key-3,local-app-key-4}
+      API_TOKEN_SALT: ${API_TOKEN_SALT:-local-api-token-salt}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET:-local-admin-jwt-secret}
+      TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT:-local-transfer-token-salt}
+      JWT_SECRET: ${JWT_SECRET:-local-jwt-secret}
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY:-local-encryption-key}
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_NAME: ${DATABASE_NAME:-strapi}
+      DATABASE_USERNAME: ${DATABASE_USERNAME:-strapi}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD:-strapi-local-password}
+      DATABASE_SCHEMA: ${DATABASE_SCHEMA:-public}
+      DATABASE_SSL: ${DATABASE_SSL:-false}
+    ports:
+      - "${CMS_PORT:-1337}:1337"
+    volumes:
+      - cms_uploads:/app/public/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:1337/_health').then(r => { if (!r.ok) process.exit(1) }).catch(() => process.exit(1))"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+      start_period: 60s
+    security_opt:
+      - no-new-privileges:true
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    restart: unless-stopped
+    init: true
+    environment:
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: 3000
+      NUXT_PUBLIC_STRAPI_URL: ${NUXT_PUBLIC_STRAPI_URL:-http://localhost:1337}
+    ports:
+      - "${WEB_PORT:-3000}:3000"
+    depends_on:
+      cms:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/').then(r => { if (!r.ok) process.exit(1) }).catch(() => process.exit(1))"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 20s
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  postgres_data:
+  cms_uploads:
