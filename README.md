@@ -46,6 +46,10 @@ pnpm dev
 - Nuxt: http://localhost:3000
 - Strapi: http://localhost:1337/admin
 
+`NUXT_STRAPI_URL` задаёт адрес Strapi для SSR, а
+`NUXT_PUBLIC_STRAPI_URL` — адрес, доступный браузеру. В Docker Compose серверный
+адрес автоматически указывает на сервис `cms`.
+
 Первый запуск Strapi предложит создать локального администратора.
 
 Отдельный запуск приложения:
