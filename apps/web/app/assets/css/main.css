@@ -1,0 +1,142 @@
+:root {
+  color-scheme: light;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #1b1b1b;
+  background: #fff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+}
+
+a {
+  color: #174ea6;
+}
+
+a:hover {
+  text-decoration-thickness: 0.14em;
+}
+
+:focus-visible {
+  outline: 3px solid #c2410c;
+  outline-offset: 3px;
+}
+
+.site-shell {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.site-container {
+  width: min(100% - 2rem, 72rem);
+  margin-inline: auto;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 10;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.75rem 1rem;
+  transform: translateY(-200%);
+  color: #fff;
+  background: #1b1b1b;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.site-header {
+  border-bottom: 1px solid #d7d7d7;
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-block: 1rem;
+}
+
+.site-header__brand {
+  color: inherit;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.site-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-navigation__link {
+  display: inline-block;
+  padding-block: 0.5rem;
+  color: inherit;
+  text-underline-offset: 0.25em;
+}
+
+.site-navigation__link--active {
+  font-weight: 700;
+  text-decoration-thickness: 0.14em;
+}
+
+.site-main {
+  flex: 1;
+  padding-block: clamp(2rem, 5vw, 4rem);
+}
+
+.site-main:focus {
+  outline: none;
+}
+
+.page-section {
+  max-width: 48rem;
+}
+
+.page-section > :first-child,
+.page-section header > :first-child {
+  margin-top: 0;
+}
+
+.site-footer {
+  border-top: 1px solid #d7d7d7;
+  padding-block: 1.5rem;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+@media (max-width: 40rem) {
+  .site-header__inner {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

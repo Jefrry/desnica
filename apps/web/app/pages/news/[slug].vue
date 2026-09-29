@@ -44,7 +44,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <main>
+  <div class="page-section">
     <nav aria-label="Хлебные крошки">
       <NuxtLink to="/news">
         Новости
@@ -68,7 +68,7 @@ useSeoMeta({
         {{ article?.content }}
       </p>
     </article>
-  </main>
+  </div>
 </template>
 
 <style scoped>

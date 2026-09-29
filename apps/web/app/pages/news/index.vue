@@ -18,7 +18,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <main>
+  <div class="page-section">
     <header>
       <h1>Новости</h1>
     </header>
@@ -64,5 +64,5 @@ useSeoMeta({
         </article>
       </li>
     </ul>
-  </main>
+  </div>
 </template>
