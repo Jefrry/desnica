@@ -1,4 +1,5 @@
 import type { Core } from '@strapi/strapi';
+import { configureAuthorRole } from './roles/author';
 import { slugify } from './utils/slug';
 
 const PUBLIC_NEWS_ACTIONS = [
@@ -45,6 +46,8 @@ export default {
    * run jobs, or perform some special logic.
    */
   async bootstrap({ strapi }: { strapi: Core.Strapi }) {
+    await configureAuthorRole(strapi);
+
     const role = await strapi.db.query('plugin::users-permissions.role').findOne({
       where: { type: 'public' },
       populate: ['permissions'],
