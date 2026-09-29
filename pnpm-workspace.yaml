@@ -3,6 +3,7 @@ packages:
 
 allowBuilds:
   '@swc/core': true
+  'better-sqlite3@12.8.0': true
   core-js-pure: true
   esbuild: true
   sharp: true
