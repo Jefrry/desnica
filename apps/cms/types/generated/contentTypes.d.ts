@@ -446,8 +446,8 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiNewsNews extends Struct.CollectionTypeSchema {
   collectionName: 'news';
   info: {
-    description: 'Published news articles';
-    displayName: 'News';
+    description: '\u041E\u043F\u0443\u0431\u043B\u0438\u043A\u043E\u0432\u0430\u043D\u043D\u044B\u0435 \u0441\u0442\u0430\u0442\u044C\u0438';
+    displayName: '\u0421\u0442\u0430\u0442\u044C\u0438';
     pluralName: 'news-items';
     singularName: 'news';
   };

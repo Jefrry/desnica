@@ -4,8 +4,8 @@
   "info": {
     "singularName": "news",
     "pluralName": "news-items",
-    "displayName": "News",
-    "description": "Published news articles"
+    "displayName": "Статьи",
+    "description": "Опубликованные статьи"
   },
   "options": {
     "draftAndPublish": true
