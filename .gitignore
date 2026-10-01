@@ -22,6 +22,7 @@ build/
 *.sqlite3
 apps/cms/public/uploads/*
 !apps/cms/public/uploads/.gitkeep
+design/
 
 # Logs and caches
 *.log
