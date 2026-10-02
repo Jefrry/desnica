@@ -2,6 +2,12 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: process.env.NODE_ENV !== 'production' },
+  components: [
+    {
+      path: '~/components',
+      pathPrefix: false,
+    },
+  ],
   app: {
     head: {
       htmlAttrs: { lang: 'ru' },
