@@ -1,11 +1,15 @@
-:root {
-  color-scheme: light;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+@import "tailwindcss";
 
-  /* Colour */
-  --color-text-primary: #17283b;
-  --color-text-secondary: #4b5e73;
-  --color-brand-primary: #2455a6;
+@theme {
+  --breakpoint-phone: 22.5rem;
+  --breakpoint-tablet: 48rem;
+  --breakpoint-desktop: 75rem;
+
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --color-ink: #17283b;
+  --color-muted: #4b5e73;
+  --color-brand: #2455a6;
   --color-brand-hover: #1d468b;
   --color-brand-active: #183b75;
   --color-surface: #ffffff;
@@ -19,243 +23,241 @@
   --color-success: #147a45;
   --color-success-surface: #eef8f2;
 
-  /* Type */
-  --font-family-base: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-size-body: 1.125rem;
-  --line-height-body: 1.611;
-  --font-size-caption: 1rem;
-  --line-height-caption: 1.5;
-  --font-size-control: 1rem;
-  --line-height-control: 1.5;
+  --text-body: 1.125rem;
+  --text-body--line-height: 1.8125rem;
+  --text-caption: 1rem;
+  --text-caption--line-height: 1.5rem;
+  --text-control: 1rem;
+  --text-control--line-height: 1.5rem;
+  --text-h1-mobile: 2rem;
+  --text-h1-mobile--line-height: 2.375rem;
+  --text-h1-tablet: 2.5rem;
+  --text-h1-tablet--line-height: 2.875rem;
+  --text-h1-desktop: 3rem;
+  --text-h1-desktop--line-height: 3.375rem;
+  --text-h2-mobile: 1.75rem;
+  --text-h2-mobile--line-height: 2.125rem;
+  --text-h2-tablet: 2rem;
+  --text-h2-tablet--line-height: 2.375rem;
+  --text-h2-desktop: 2.25rem;
+  --text-h2-desktop--line-height: 2.625rem;
+  --text-h3-mobile: 1.25rem;
+  --text-h3-mobile--line-height: 1.625rem;
+  --text-h3: 1.375rem;
+  --text-h3--line-height: 1.75rem;
+  --text-display-mobile: 2.25rem;
+  --text-display-mobile--line-height: 2.5rem;
+  --text-display-tablet: 3rem;
+  --text-display-tablet--line-height: 3.375rem;
+  --text-display-desktop: 4rem;
+  --text-display-desktop--line-height: 4.25rem;
+  --text-intro-mobile: 1.125rem;
+  --text-intro-mobile--line-height: 1.75rem;
+  --text-intro-tablet: 1.25rem;
+  --text-intro-tablet--line-height: 1.875rem;
+  --text-intro-desktop: 1.375rem;
+  --text-intro-desktop--line-height: 2rem;
+  --text-brand-mobile: 1.25rem;
+  --text-brand-mobile--line-height: 1.3125rem;
+  --text-brand-tablet: 1.375rem;
+  --text-brand-tablet--line-height: 1.4375rem;
+  --text-brand-desktop: 1.5rem;
+  --text-brand-desktop--line-height: 1.5rem;
 
-  /* Spacing */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-6: 1.5rem;
-  --space-8: 2rem;
-  --space-10: 2.5rem;
-  --space-12: 3rem;
-  --space-16: 4rem;
-  --space-20: 5rem;
+  --spacing: 0.25rem;
+  --spacing-control: 3rem;
+  --spacing-icon-control: 2.75rem;
+  --spacing-section-mobile: 2.5rem;
+  --spacing-section-tablet: 3rem;
+  --spacing-section-desktop: 4rem;
+  --spacing-section-block-mobile: 1.5rem;
+  --spacing-section-block: 2.5rem;
 
-  /* Layout and shape */
-  --container-max: 75rem;
-  --page-gutter: 2rem;
-  --section-gap: 4rem;
-  --section-block-padding: 2.5rem;
+  --container-content: 75rem;
+  --container-shell: 79rem;
+
   --radius-card: 0.5rem;
   --radius-control: 0.375rem;
-  --border-width: 1px;
-  --control-min-height: 3rem;
-  --icon-control-size: 2.75rem;
   --shadow-menu: 0 0.5rem 1.5rem rgb(23 40 59 / 12%);
-
-  font-family: var(--font-family-base);
-  color: var(--color-text-primary);
-  background: var(--color-surface);
+  --default-transition-duration: 160ms;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 7rem;
-}
-
-body {
-  min-height: 100vh;
-  margin: 0;
-  color: var(--color-text-primary);
-  background: var(--color-surface);
-  font-size: var(--font-size-body);
-  line-height: var(--line-height-body);
-}
-
-button,
-input,
-select,
-textarea {
-  font: inherit;
-}
-
-img,
-svg,
-video {
-  display: block;
-  max-width: 100%;
-}
-
-h1,
-h2,
-h3,
-p {
-  overflow-wrap: anywhere;
-}
-
-h1,
-h2,
-h3 {
-  margin-block: 0 var(--space-6);
-  color: var(--color-text-primary);
-  font-weight: 700;
-}
-
-h1 {
-  font-size: 3rem;
-  line-height: 1.125;
-}
-
-h2 {
-  font-size: 2.25rem;
-  line-height: 1.167;
-}
-
-h3 {
-  margin-block-end: var(--space-2);
-  font-size: 1.375rem;
-  line-height: 1.273;
-}
-
-p {
-  margin-block: 0 var(--space-4);
-}
-
-a {
-  color: var(--color-brand-primary);
-  text-decoration: underline;
-  text-decoration-thickness: 0.08em;
-  text-underline-offset: 0.2em;
-}
-
-a:hover {
-  color: var(--color-brand-hover);
-  text-decoration-thickness: 0.14em;
-}
-
-a:active {
-  color: var(--color-brand-active);
-}
-
-:focus-visible {
-  outline: 3px solid var(--color-focus);
-  outline-offset: 3px;
-}
-
-.visually-hidden {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  padding: 0 !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  white-space: nowrap !important;
-  border: 0 !important;
-}
-
-.page-section {
-  width: min(
-    calc(100% - var(--page-gutter) - var(--page-gutter)),
-    var(--container-max)
-  );
-  margin-inline: auto;
-}
-
-.page-section > :first-child,
-.page-section header > :first-child {
-  margin-top: 0;
-}
-
-.heading-display {
-  font-size: 4rem;
-  line-height: 1.0625;
-}
-
-.text-intro {
-  color: var(--color-text-primary);
-  font-size: 1.375rem;
-  line-height: 1.455;
-}
-
-.text-caption {
-  color: var(--color-text-secondary);
-  font-size: var(--font-size-caption);
-  line-height: var(--line-height-caption);
-}
-
-@media (max-width: 74.9375rem) {
-  h1 {
-    font-size: 2.5rem;
-    line-height: 1.15;
-  }
-
-  h2 {
-    font-size: 2rem;
-    line-height: 1.1875;
-  }
-
-  .heading-display {
-    font-size: 3rem;
-    line-height: 1.125;
-  }
-
-  .text-intro {
-    font-size: 1.25rem;
-    line-height: 1.5;
-  }
-
-  :root {
-    --section-gap: 3rem;
-    --section-block-padding: 2.5rem;
-  }
-}
-
-@media (max-width: 47.9375rem) {
-  :root {
-    --page-gutter: 1.25rem;
-    --section-gap: 2.5rem;
-    --section-block-padding: 1.5rem;
-  }
-
+@layer base {
   html {
-    scroll-padding-top: 5.5rem;
+    min-width: 20rem;
+    color-scheme: light;
+    scroll-behavior: smooth;
+    scroll-padding-top: 7rem;
+    font-family: var(--font-sans);
+  }
+
+  body {
+    min-height: 100vh;
+    margin: 0;
+    color: var(--color-ink);
+    background: var(--color-surface);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    overflow-wrap: anywhere;
+  }
+
+  h1,
+  h2,
+  h3 {
+    margin-block: 0 1.5rem;
+    color: var(--color-ink);
+    font-weight: 700;
   }
 
   h1 {
-    font-size: 2rem;
-    line-height: 1.1875;
+    font-size: var(--text-h1-mobile);
+    line-height: var(--text-h1-mobile--line-height);
   }
 
   h2 {
-    font-size: 1.75rem;
-    line-height: 1.214;
+    font-size: var(--text-h2-mobile);
+    line-height: var(--text-h2-mobile--line-height);
   }
 
   h3 {
-    font-size: 1.25rem;
-    line-height: 1.3;
+    margin-block-end: 0.5rem;
+    font-size: var(--text-h3-mobile);
+    line-height: var(--text-h3-mobile--line-height);
   }
 
-  .heading-display {
-    font-size: 2.25rem;
-    line-height: 1.111;
+  p {
+    margin-block: 0 1rem;
   }
 
-  .text-intro {
-    font-size: 1.125rem;
-    line-height: 1.556;
+  a {
+    color: var(--color-brand);
+    text-decoration: underline;
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.2em;
+  }
+
+  a:hover {
+    color: var(--color-brand-hover);
+    text-decoration-thickness: 0.14em;
+  }
+
+  a:active {
+    color: var(--color-brand-active);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 3px;
   }
 }
 
-@media (max-width: 22.4375rem) {
-  :root {
-    --page-gutter: 1rem;
+@layer components {
+  .page-section {
+    width: 100%;
+    max-width: var(--container-shell);
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  .page-section > :first-child,
+  .page-section header > :first-child {
+    margin-top: 0;
+  }
+
+  .heading-display {
+    font-size: var(--text-display-mobile);
+    line-height: var(--text-display-mobile--line-height);
+  }
+
+  .text-intro {
+    color: var(--color-ink);
+    font-size: var(--text-intro-mobile);
+    line-height: var(--text-intro-mobile--line-height);
+  }
+
+  .text-caption {
+    color: var(--color-muted);
+    font-size: var(--text-caption);
+    line-height: var(--text-caption--line-height);
+  }
+}
+
+@media (min-width: 22.5rem) {
+  .page-section {
+    padding-inline: 1.25rem;
+  }
+}
+
+@media (min-width: 48rem) {
+  h1 {
+    font-size: var(--text-h1-tablet);
+    line-height: var(--text-h1-tablet--line-height);
+  }
+
+  h2 {
+    font-size: var(--text-h2-tablet);
+    line-height: var(--text-h2-tablet--line-height);
+  }
+
+  h3 {
+    font-size: var(--text-h3);
+    line-height: var(--text-h3--line-height);
+  }
+
+  .page-section {
+    padding-inline: 2rem;
+  }
+
+  .heading-display {
+    font-size: var(--text-display-tablet);
+    line-height: var(--text-display-tablet--line-height);
+  }
+
+  .text-intro {
+    font-size: var(--text-intro-tablet);
+    line-height: var(--text-intro-tablet--line-height);
+  }
+}
+
+@media (min-width: 75rem) {
+  h1 {
+    font-size: var(--text-h1-desktop);
+    line-height: var(--text-h1-desktop--line-height);
+  }
+
+  h2 {
+    font-size: var(--text-h2-desktop);
+    line-height: var(--text-h2-desktop--line-height);
+  }
+
+  .heading-display {
+    font-size: var(--text-display-desktop);
+    line-height: var(--text-display-desktop--line-height);
+  }
+
+  .text-intro {
+    font-size: var(--text-intro-desktop);
+    line-height: var(--text-intro-desktop--line-height);
+  }
+}
+
+@media (max-width: 47.999rem) {
+  html {
+    scroll-padding-top: 5.5rem;
   }
 }
 

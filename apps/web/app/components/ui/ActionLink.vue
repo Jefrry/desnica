@@ -1,6 +1,14 @@
 <script setup>
 defineOptions({ name: 'ActionLink' })
 
+const actionBaseClasses = 'relative inline-flex min-h-control max-w-full items-center gap-2 rounded-control border py-[0.6875rem] text-center text-control font-semibold [overflow-wrap:anywhere] no-underline transition-colors focus-visible:outline-[3px] focus-visible:outline-focus focus-visible:outline-offset-[3px]'
+
+const variantClasses = {
+  primary: 'justify-center border-brand bg-brand px-6 text-surface hover:border-brand-hover hover:bg-brand-hover hover:text-surface hover:no-underline active:border-brand-active active:bg-brand-active active:text-surface focus-visible:ring-[3px] focus-visible:ring-surface focus-visible:outline-offset-[5px] max-[22.4375rem]:w-full',
+  secondary: 'justify-center border-brand bg-surface px-6 text-brand hover:border-brand-hover hover:bg-surface-accent hover:text-brand-hover hover:no-underline active:border-brand-active active:bg-border-subtle active:text-brand-active max-[22.4375rem]:w-full',
+  text: 'justify-start border-0 bg-transparent px-0 text-brand underline decoration-[0.08em] underline-offset-[0.2em] hover:text-brand-hover hover:decoration-[0.14em] active:text-brand-active',
+}
+
 defineProps({
   to: {
     type: [String, Object],
@@ -35,8 +43,7 @@ defineProps({
   <NuxtLink
     v-if="to"
     :to="to"
-    class="action-control"
-    :class="`action-control--${variant}`"
+    :class="[actionBaseClasses, variantClasses[variant]]"
   >
     <slot />
   </NuxtLink>
@@ -44,8 +51,7 @@ defineProps({
   <a
     v-else-if="href"
     :href="href"
-    class="action-control"
-    :class="`action-control--${variant}`"
+    :class="[actionBaseClasses, variantClasses[variant]]"
     :target="target"
     :rel="rel || (target === '_blank' ? 'noopener noreferrer' : undefined)"
   >
@@ -54,114 +60,9 @@ defineProps({
 
   <span
     v-else
-    class="action-unavailable"
+    class="text-control text-muted"
   >
     <slot />
-    <span class="action-unavailable__reason"> ({{ unavailableReason }})</span>
+    <span class="not-italic"> ({{ unavailableReason }})</span>
   </span>
 </template>
-
-<style scoped>
-.action-control {
-  position: relative;
-  display: inline-flex;
-  min-height: var(--control-min-height);
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
-  max-width: 100%;
-  padding: 0.6875rem var(--space-6);
-  border: var(--border-width) solid transparent;
-  border-radius: var(--radius-control);
-  font-size: var(--font-size-control);
-  font-weight: 600;
-  line-height: var(--line-height-control);
-  text-align: center;
-  text-decoration: none;
-  overflow-wrap: anywhere;
-  cursor: pointer;
-  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
-}
-
-.action-control--primary {
-  border-color: var(--color-brand-primary);
-  color: var(--color-surface);
-  background: var(--color-brand-primary);
-}
-
-.action-control--primary:hover {
-  border-color: var(--color-brand-hover);
-  color: var(--color-surface);
-  background: var(--color-brand-hover);
-}
-
-.action-control--primary:active {
-  border-color: var(--color-brand-active);
-  color: var(--color-surface);
-  background: var(--color-brand-active);
-}
-
-.action-control--secondary {
-  border-color: var(--color-brand-primary);
-  color: var(--color-brand-primary);
-  background: var(--color-surface);
-}
-
-.action-control--secondary:hover {
-  border-color: var(--color-brand-hover);
-  color: var(--color-brand-hover);
-  background: var(--color-surface-accent);
-}
-
-.action-control--secondary:active {
-  border-color: var(--color-brand-active);
-  color: var(--color-brand-active);
-  background: var(--color-border-subtle);
-}
-
-.action-control--text {
-  justify-content: flex-start;
-  padding-inline: 0;
-  border: 0;
-  color: var(--color-brand-primary);
-  background: transparent;
-  text-decoration: underline;
-  text-decoration-thickness: 0.08em;
-  text-underline-offset: 0.2em;
-}
-
-.action-control--text:hover {
-  color: var(--color-brand-hover);
-  text-decoration-thickness: 0.14em;
-}
-
-.action-control--text:active {
-  color: var(--color-brand-active);
-}
-
-.action-control:focus-visible {
-  outline: 3px solid var(--color-focus);
-  outline-offset: 3px;
-}
-
-.action-control--primary:focus-visible {
-  box-shadow: 0 0 0 3px var(--color-surface);
-  outline-offset: 5px;
-}
-
-.action-unavailable {
-  color: var(--color-text-secondary);
-  font-size: var(--font-size-control);
-  line-height: var(--line-height-control);
-}
-
-.action-unavailable__reason {
-  font-style: normal;
-}
-
-@media (max-width: 22.4375rem) {
-  .action-control:not(.action-control--text) {
-    width: 100%;
-  }
-}
-</style>

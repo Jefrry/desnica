@@ -23,20 +23,26 @@ const props = defineProps({
 })
 
 const headingId = `${props.id}-title`
+
+const toneClasses = {
+  default: 'bg-surface',
+  subtle: 'bg-surface-subtle',
+  accent: 'bg-surface-accent',
+}
 </script>
 
 <template>
   <section
     :id="id"
-    class="content-section"
-    :class="`content-section--${tone}`"
+    class="bg-surface text-ink"
+    :class="toneClasses[tone]"
     :aria-labelledby="headingId"
   >
-    <Container class="content-section__inner">
+    <Container class="py-section-block-mobile tablet:py-section-block">
       <component
         :is="headingLevel"
         :id="headingId"
-        class="content-section__heading"
+        class="mb-6"
       >
         {{ title }}
       </component>
@@ -45,26 +51,3 @@ const headingId = `${props.id}-title`
     </Container>
   </section>
 </template>
-
-<style scoped>
-.content-section {
-  color: var(--color-text-primary);
-  background: var(--color-surface);
-}
-
-.content-section--subtle {
-  background: var(--color-surface-subtle);
-}
-
-.content-section--accent {
-  background: var(--color-surface-accent);
-}
-
-.content-section__inner {
-  padding-block: var(--section-block-padding);
-}
-
-.content-section__heading {
-  margin-block-end: var(--space-6);
-}
-</style>

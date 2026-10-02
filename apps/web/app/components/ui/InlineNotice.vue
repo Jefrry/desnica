@@ -31,6 +31,12 @@ const markers = {
   success: '✓',
 }
 
+const noticeClasses = {
+  info: 'border-brand-active bg-surface-accent text-brand-active',
+  error: 'border-error bg-error-surface text-error',
+  success: 'border-success bg-success-surface text-success',
+}
+
 const liveMessage = ref('')
 
 async function announce() {
@@ -48,90 +54,33 @@ watch(() => [props.kind, props.text, props.announceChange], announce)
 
 <template>
   <div
-    class="inline-notice"
-    :class="`inline-notice--${kind}`"
+    class="flex items-start gap-3 rounded-card border p-4"
+    :class="noticeClasses[kind]"
   >
     <span
-      class="inline-notice__marker"
+      class="mt-0.5 inline-grid size-6 shrink-0 place-items-center rounded-full border-2 border-current text-sm font-bold leading-none"
       aria-hidden="true"
     >{{ markers[kind] }}</span>
 
-    <div class="inline-notice__body">
+    <div class="min-w-0 flex-1">
       <div>
-        <span class="inline-notice__label">{{ labels[kind] }}.</span>
-        <span class="inline-notice__text"> {{ text }}</span>
+        <span class="text-control font-bold">{{ labels[kind] }}.</span>
+        <span class="ml-1 text-ink"> {{ text }}</span>
       </div>
 
       <div
         v-if="$slots.action"
-        class="inline-notice__action"
+        class="mt-3"
       >
         <slot name="action" />
       </div>
     </div>
 
     <span
-      class="visually-hidden"
+      class="sr-only"
       :role="kind === 'error' ? 'alert' : 'status'"
       :aria-live="kind === 'error' ? 'assertive' : 'polite'"
       aria-atomic="true"
     >{{ liveMessage }}</span>
   </div>
 </template>
-
-<style scoped>
-.inline-notice {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-3);
-  padding: var(--space-4);
-  border: var(--border-width) solid currentcolor;
-  border-radius: var(--radius-card);
-  color: var(--color-brand-active);
-  background: var(--color-surface-accent);
-}
-
-.inline-notice--error {
-  color: var(--color-error);
-  background: var(--color-error-surface);
-}
-
-.inline-notice--success {
-  color: var(--color-success);
-  background: var(--color-success-surface);
-}
-
-.inline-notice__marker {
-  display: inline-grid;
-  flex: 0 0 1.5rem;
-  width: 1.5rem;
-  height: 1.5rem;
-  place-items: center;
-  margin-top: 0.125rem;
-  border: 2px solid currentcolor;
-  border-radius: 50%;
-  font-size: 0.875rem;
-  font-weight: 700;
-  line-height: 1;
-}
-
-.inline-notice__body {
-  min-width: 0;
-  flex: 1;
-}
-
-.inline-notice__label {
-  font-size: var(--font-size-control);
-  font-weight: 700;
-  line-height: var(--line-height-control);
-}
-
-.inline-notice__text {
-  margin-inline-start: var(--space-1);
-  color: var(--color-text-primary);
-}
-
-.inline-notice__action {
-  margin-top: var(--space-3);
-}
-</style>

@@ -1,25 +1,33 @@
-<script setup lang="ts">
-const currentYear = new Date().getFullYear()
+<script setup>
+defineOptions({ name: 'AppFooter' })
+
+defineProps({
+  copyright: {
+    type: String,
+    default: '© Ресурсный центр',
+  },
+  legalTo: {
+    type: String,
+    default: '/legal',
+  },
+})
 </script>
 
 <template>
-  <footer class="site-footer">
-    <Container>
-      <p>© {{ currentYear }} Десница</p>
+  <footer class="border-t border-border-subtle py-5 text-caption text-muted">
+    <Container class="flex flex-wrap items-center justify-start gap-2 tablet:flex-nowrap tablet:justify-between tablet:gap-x-6">
+      <p class="m-0">
+        {{ copyright }}
+      </p>
+
+      <span
+        class="tablet:hidden"
+        aria-hidden="true"
+      >·</span>
+
+      <NuxtLink :to="legalTo">
+        Правовая информация
+      </NuxtLink>
     </Container>
   </footer>
 </template>
-
-<style scoped>
-.site-footer {
-  border-top: var(--border-width) solid var(--color-border-subtle);
-  padding-block: 1.25rem;
-  color: var(--color-text-secondary);
-  font-size: var(--font-size-caption);
-  line-height: var(--line-height-caption);
-}
-
-.site-footer p {
-  margin: 0;
-}
-</style>

@@ -3,17 +3,7 @@ defineOptions({ name: 'LayoutContainer' })
 </script>
 
 <template>
-  <div class="site-container">
+  <div class="mx-auto w-full max-w-shell px-4 phone:px-5 tablet:px-8">
     <slot />
   </div>
 </template>
-
-<style scoped>
-.site-container {
-  width: min(
-    calc(100% - var(--page-gutter) - var(--page-gutter)),
-    var(--container-max)
-  );
-  margin-inline: auto;
-}
-</style>

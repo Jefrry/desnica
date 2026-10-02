@@ -28,6 +28,14 @@ const props = defineProps({
 
 const emit = defineEmits(['click'])
 
+const actionBaseClasses = 'relative inline-flex min-h-control max-w-full cursor-pointer items-center gap-2 rounded-control border py-[0.6875rem] text-center text-control font-semibold [overflow-wrap:anywhere] transition-colors focus-visible:outline-[3px] focus-visible:outline-focus focus-visible:outline-offset-[3px] disabled:cursor-not-allowed'
+
+const variantClasses = {
+  primary: 'justify-center border-brand bg-brand px-6 text-surface hover:border-brand-hover hover:bg-brand-hover active:border-brand-active active:bg-brand-active focus-visible:ring-[3px] focus-visible:ring-surface focus-visible:outline-offset-[5px] disabled:border-border-control disabled:bg-border-control disabled:text-surface disabled:hover:border-border-control disabled:hover:bg-border-control max-[22.4375rem]:w-full',
+  secondary: 'justify-center border-brand bg-surface px-6 text-brand hover:border-brand-hover hover:bg-surface-accent hover:text-brand-hover active:border-brand-active active:bg-border-subtle active:text-brand-active disabled:border-border-control disabled:bg-surface-subtle disabled:text-muted disabled:hover:border-border-control disabled:hover:bg-surface-subtle disabled:hover:text-muted max-[22.4375rem]:w-full',
+  text: 'justify-start border-0 bg-transparent px-0 text-brand underline decoration-[0.08em] underline-offset-[0.2em] hover:text-brand-hover hover:decoration-[0.14em] active:text-brand-active disabled:border-0 disabled:bg-transparent disabled:text-muted disabled:hover:bg-transparent disabled:hover:text-muted',
+}
+
 function handleClick(event) {
   if (props.disabled || props.loading) {
     event.preventDefault()
@@ -41,16 +49,14 @@ function handleClick(event) {
 <template>
   <button
     :type="type"
-    class="action-control"
-    :class="`action-control--${variant}`"
+    :class="[actionBaseClasses, variantClasses[variant]]"
     :disabled="disabled || loading"
     :aria-busy="loading || undefined"
     :aria-label="loading ? loadingLabel : undefined"
     @click="handleClick"
   >
     <span
-      class="action-control__content"
-      :class="{ 'action-control__content--loading': loading }"
+      :class="{ invisible: loading }"
       :aria-hidden="loading || undefined"
     >
       <slot />
@@ -58,156 +64,16 @@ function handleClick(event) {
 
     <span
       v-if="loading"
-      class="action-control__loader"
+      class="absolute inset-0 grid place-items-center"
       aria-hidden="true"
     >
-      <span class="action-control__spinner" />
+      <span class="size-5 animate-spin rounded-full border-2 border-current border-r-transparent [animation-duration:700ms]" />
     </span>
 
     <span
-      class="visually-hidden"
+      class="sr-only"
       aria-live="polite"
       aria-atomic="true"
     >{{ loading ? loadingLabel : '' }}</span>
   </button>
 </template>
-
-<style scoped>
-.action-control {
-  position: relative;
-  display: inline-flex;
-  min-height: var(--control-min-height);
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
-  max-width: 100%;
-  padding: 0.6875rem var(--space-6);
-  border: var(--border-width) solid transparent;
-  border-radius: var(--radius-control);
-  font-size: var(--font-size-control);
-  font-weight: 600;
-  line-height: var(--line-height-control);
-  text-align: center;
-  text-decoration: none;
-  overflow-wrap: anywhere;
-  cursor: pointer;
-  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
-}
-
-.action-control--primary {
-  border-color: var(--color-brand-primary);
-  color: var(--color-surface);
-  background: var(--color-brand-primary);
-}
-
-.action-control--primary:hover {
-  border-color: var(--color-brand-hover);
-  color: var(--color-surface);
-  background: var(--color-brand-hover);
-}
-
-.action-control--primary:active {
-  border-color: var(--color-brand-active);
-  color: var(--color-surface);
-  background: var(--color-brand-active);
-}
-
-.action-control--secondary {
-  border-color: var(--color-brand-primary);
-  color: var(--color-brand-primary);
-  background: var(--color-surface);
-}
-
-.action-control--secondary:hover {
-  border-color: var(--color-brand-hover);
-  color: var(--color-brand-hover);
-  background: var(--color-surface-accent);
-}
-
-.action-control--secondary:active {
-  border-color: var(--color-brand-active);
-  color: var(--color-brand-active);
-  background: var(--color-border-subtle);
-}
-
-.action-control--text {
-  justify-content: flex-start;
-  padding-inline: 0;
-  border: 0;
-  color: var(--color-brand-primary);
-  background: transparent;
-  text-decoration: underline;
-  text-decoration-thickness: 0.08em;
-  text-underline-offset: 0.2em;
-}
-
-.action-control--text:hover {
-  color: var(--color-brand-hover);
-  text-decoration-thickness: 0.14em;
-}
-
-.action-control--text:active {
-  color: var(--color-brand-active);
-}
-
-.action-control:focus-visible {
-  outline: 3px solid var(--color-focus);
-  outline-offset: 3px;
-}
-
-.action-control--primary:focus-visible {
-  box-shadow: 0 0 0 3px var(--color-surface);
-  outline-offset: 5px;
-}
-
-.action-control:disabled {
-  border-color: var(--color-border-control);
-  color: var(--color-text-secondary);
-  background: var(--color-surface-subtle);
-  cursor: not-allowed;
-}
-
-.action-control--primary:disabled {
-  color: var(--color-surface);
-  background: var(--color-border-control);
-}
-
-.action-control--text:disabled {
-  border: 0;
-  color: var(--color-text-secondary);
-  background: transparent;
-  text-decoration: underline;
-}
-
-.action-control__content--loading {
-  visibility: hidden;
-}
-
-.action-control__loader {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-}
-
-.action-control__spinner {
-  width: 1.25rem;
-  height: 1.25rem;
-  border: 2px solid currentcolor;
-  border-right-color: transparent;
-  border-radius: 50%;
-  animation: action-spin 700ms linear infinite;
-}
-
-@keyframes action-spin {
-  to {
-    transform: rotate(1turn);
-  }
-}
-
-@media (max-width: 22.4375rem) {
-  .action-control:not(.action-control--text) {
-    width: 100%;
-  }
-}
-</style>
