@@ -83,7 +83,7 @@ const {
 
       <div
         v-else
-        class="flex size-full min-h-40 flex-col items-center justify-center gap-2 p-4 text-center text-muted"
+        class="flex size-full flex-col items-center justify-center gap-2 p-4 text-center text-muted"
         role="img"
         :aria-label="missingAccessibleLabel"
       >

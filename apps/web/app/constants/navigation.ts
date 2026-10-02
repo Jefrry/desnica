@@ -27,3 +27,14 @@ export const NAVIGATION_ITEMS = [
   { key: 'ngo', label: 'Работа НКО', to: '/ngo', children: [] },
   { key: 'contacts', label: 'Контакты', to: '/contacts', children: [] },
 ] as const
+
+export const SERVICE_ROUTES: readonly string[] = [
+  '/services/local-documents',
+  '/services/odi',
+  '/services/project-review',
+  '/services/accessibility-passport',
+]
+
+export function isServiceRoute(value: string) {
+  return SERVICE_ROUTES.includes(value)
+}
