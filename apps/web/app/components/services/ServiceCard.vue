@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { ServiceRoute } from '~/constants/navigation'
+
 defineOptions({ name: 'ServiceCard' })
 
 interface Props {
@@ -7,7 +9,7 @@ interface Props {
   alt: string
   title: string
   description: string
-  to: string
+  to: ServiceRoute
 }
 
 withDefaults(defineProps<Props>(), {

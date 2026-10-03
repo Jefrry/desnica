@@ -18,7 +18,9 @@ interface ProcessStep {
 }
 
 interface Props {
-  items: ProcessStep[]
+  items:
+    | readonly [ProcessStep, ProcessStep, ProcessStep]
+    | readonly [ProcessStep, ProcessStep, ProcessStep, ProcessStep]
   variant?: 'compact' | 'with-media'
 }
 

@@ -24,8 +24,9 @@ export default defineNuxtConfig({
   runtimeConfig: {
     strapiUrl: process.env.NUXT_STRAPI_URL || 'http://localhost:1337',
     public: {
-      strapiUrl: process.env.NUXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'
-    }
+      strapiUrl: process.env.NUXT_PUBLIC_STRAPI_URL || 'http://localhost:1337',
+      previewMode: false,
+    },
   },
   vite: {
     plugins: [tailwindcss()],

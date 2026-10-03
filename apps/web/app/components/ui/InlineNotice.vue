@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nextTick, onMounted, ref, watch } from 'vue'
+import { nextTick, ref, watch } from 'vue'
 
 defineOptions({ name: 'InlineNotice' })
 
@@ -45,7 +45,6 @@ async function announce() {
   }
 }
 
-onMounted(announce)
 watch(() => [props.kind, props.text, props.announceChange], announce)
 </script>
 

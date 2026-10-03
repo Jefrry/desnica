@@ -28,13 +28,15 @@ export const NAVIGATION_ITEMS = [
   { key: 'contacts', label: 'Контакты', to: '/contacts', children: [] },
 ] as const
 
-export const SERVICE_ROUTES: readonly string[] = [
+export const SERVICE_ROUTES = [
   '/services/local-documents',
   '/services/odi',
   '/services/project-review',
   '/services/accessibility-passport',
-]
+] as const
 
-export function isServiceRoute(value: string) {
-  return SERVICE_ROUTES.includes(value)
+export type ServiceRoute = typeof SERVICE_ROUTES[number]
+
+export function isServiceRoute(value: string): value is ServiceRoute {
+  return SERVICE_ROUTES.some(route => route === value)
 }

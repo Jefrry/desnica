@@ -7,7 +7,7 @@ interface PrincipleItem {
 }
 
 defineProps<{
-  items: PrincipleItem[]
+  items: readonly [PrincipleItem, PrincipleItem, PrincipleItem]
 }>()
 </script>
 

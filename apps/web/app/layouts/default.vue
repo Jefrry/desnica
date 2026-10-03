@@ -1,10 +1,12 @@
-<script setup>
+<script setup lang="ts">
 import { nextTick, watch } from 'vue'
 import { useRoute } from '#imports'
+import { useDeploymentPreview } from '~/composables/useDeploymentPreview'
 
 defineOptions({ name: 'DefaultLayout' })
 
 const route = useRoute()
+const isPreviewMode = useDeploymentPreview()
 
 watch(
   () => route.path,
@@ -25,6 +27,8 @@ watch(
     </a>
 
     <AppHeader />
+
+    <PreviewBanner v-if="isPreviewMode" />
 
     <AppMain>
       <slot />

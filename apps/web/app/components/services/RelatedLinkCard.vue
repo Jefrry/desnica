@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { ServiceRoute } from '~/constants/navigation'
+
 defineOptions({ name: 'RelatedLinkCard' })
 
 interface RelatedMedia {
@@ -9,7 +11,7 @@ interface RelatedMedia {
 }
 
 interface Props {
-  to: string
+  to: ServiceRoute
   title: string
   description?: string
   media?: RelatedMedia
