@@ -84,7 +84,7 @@
 
 @layer base {
   html {
-    min-width: 20rem;
+    min-width: 0;
     color-scheme: light;
     scroll-behavior: smooth;
     scroll-padding-top: 7rem;

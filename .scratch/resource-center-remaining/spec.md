@@ -28,7 +28,7 @@ Status: ready-for-agent
 6. As a visitor, I want service cards to lead only to the four supported services, so that I never reach an invented or unsupported route.
 7. As an editor, I want principle and process components to accept only their agreed content shapes, so that page composition cannot silently diverge from the design.
 8. As a visitor, I want document rows to distinguish reading on the site from downloading a file, so that I understand which formats are actually available.
-9. As a visitor, I want an unavailable document action to be visibly unavailable and explained, so that I do not follow an empty link.
+9. As a visitor, I want an unavailable document action to be visibly unavailable and not rendered as an empty or fake link, so that I do not try to follow it.
 10. As a visitor, I want to open a text version of a document without requiring a PDF, so that important information remains accessible.
 11. As a visitor, I want the selected document reflected in the URL, so that I can bookmark and share it.
 12. As a visitor, I want browser back and forward to restore the previously selected document, so that navigation behaves normally.

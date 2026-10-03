@@ -1,6 +1,6 @@
 <template>
   <header class="site-header sticky top-0 z-50 border-b border-border-subtle bg-surface">
-    <Container class="flex min-h-18 items-center justify-between gap-8 py-2 tablet:min-h-22 tablet:py-4">
+    <Container class="flex min-h-18 items-center justify-between gap-4 py-2 tablet:min-h-22 tablet:gap-8 tablet:py-4">
       <BrandLogo />
 
       <AppNavigation />

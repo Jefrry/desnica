@@ -11,7 +11,6 @@ interface Props {
   variant?: ActionVariant
   target?: '_blank' | '_self'
   rel?: string
-  unavailableReason?: string
 }
 
 const actionBaseClasses = 'relative inline-flex min-h-control max-w-full items-center gap-2 rounded-control border py-[0.6875rem] text-center text-control font-semibold [overflow-wrap:anywhere] no-underline transition-colors focus-visible:outline-[3px] focus-visible:outline-focus focus-visible:outline-offset-[3px]'
@@ -28,7 +27,6 @@ withDefaults(defineProps<Props>(), {
   variant: 'primary',
   target: '_self',
   rel: undefined,
-  unavailableReason: 'ссылка пока недоступна',
 })
 </script>
 
@@ -56,6 +54,5 @@ withDefaults(defineProps<Props>(), {
     class="text-control text-muted"
   >
     <slot />
-    <span class="not-italic"> ({{ unavailableReason }})</span>
   </span>
 </template>
