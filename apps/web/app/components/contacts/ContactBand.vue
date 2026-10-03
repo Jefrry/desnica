@@ -1,37 +1,30 @@
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue'
+import type { RouteLocationRaw } from 'vue-router'
 
 defineOptions({ name: 'ContactBand' })
 
-const props = defineProps({
-  id: {
-    type: String,
-    default: 'contact-band',
-  },
-  title: {
-    type: String,
-    required: true,
-  },
-  text: {
-    type: String,
-    required: true,
-  },
-  ctaLabel: {
-    type: String,
-    default: 'Связаться с нами',
-  },
-  ctaTo: {
-    type: [String, Object],
-    default: '/contacts',
-  },
-  phone: {
-    type: Object,
-    default: undefined,
-  },
-  email: {
-    type: Object,
-    default: undefined,
-  },
+interface ContactValue {
+  value: string
+  href?: string
+}
+
+interface Props {
+  id?: string
+  title: string
+  text: string
+  ctaLabel?: string
+  ctaTo?: RouteLocationRaw
+  phone?: ContactValue
+  email?: ContactValue
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  id: 'contact-band',
+  ctaLabel: 'Связаться с нами',
+  ctaTo: '/contacts',
+  phone: undefined,
+  email: undefined,
 })
 
 const headingId = computed(() => `${props.id}-title`)

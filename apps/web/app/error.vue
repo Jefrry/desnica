@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { clearError } from '#imports'
+import type { NuxtError } from '#app'
 import { ERROR_MESSAGES, ERROR_STATUS } from '~/constants/errorConstants'
 
 defineOptions({ name: 'AppErrorPage' })
 
-const props = defineProps({
-  error: {
-    type: Object,
-    required: true,
-  },
-})
+interface Props {
+  error: NuxtError
+}
+
+const props = defineProps<Props>()
 
 const isNotFound = props.error.status === ERROR_STATUS.NOT_FOUND
 </script>

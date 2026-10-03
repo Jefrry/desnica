@@ -1,52 +1,28 @@
-<script setup>
+<script setup lang="ts">
 import { useFigureMedia } from './useFigureMedia'
 
 defineOptions({ name: 'FigureMedia' })
 
-const props = defineProps({
-  assetId: {
-    type: String,
-    required: true,
-  },
-  src: {
-    type: String,
-    default: '',
-  },
-  alt: {
-    type: String,
-    required: true,
-  },
-  width: {
-    type: Number,
-    required: true,
-    validator: value => value > 0,
-  },
-  height: {
-    type: Number,
-    required: true,
-    validator: value => value > 0,
-  },
-  ratio: {
-    type: [String, Number],
-    default: undefined,
-  },
-  focalPoint: {
-    type: String,
-    default: '50% 50%',
-  },
-  caption: {
-    type: String,
-    default: '',
-  },
-  loading: {
-    type: String,
-    default: 'lazy',
-    validator: value => ['eager', 'lazy'].includes(value),
-  },
-  missingLabel: {
-    type: String,
-    default: 'Фотография будет добавлена',
-  },
+interface Props {
+  assetId: string
+  src?: string
+  alt: string
+  width: number
+  height: number
+  ratio?: string | number
+  focalPoint?: string
+  caption?: string
+  loading?: 'eager' | 'lazy'
+  missingLabel?: string
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  src: '',
+  ratio: undefined,
+  focalPoint: '50% 50%',
+  caption: '',
+  loading: 'lazy',
+  missingLabel: 'Фотография будет добавлена',
 })
 
 const {

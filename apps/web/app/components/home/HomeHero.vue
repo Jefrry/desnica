@@ -1,35 +1,30 @@
-<script setup>
+<script setup lang="ts">
+import type { RouteLocationRaw } from 'vue-router'
+
 defineOptions({ name: 'HomeHero' })
 
-defineProps({
-  title: {
-    type: String,
-    required: true,
-  },
-  lead: {
-    type: String,
-    required: true,
-  },
-  actions: {
-    type: Array,
-    default: () => [],
-  },
-  headingId: {
-    type: String,
-    default: 'page-title',
-  },
-  logoSrc: {
-    type: String,
-    default: '/images/resource-center-logo-color.jpg',
-  },
-  logoAlt: {
-    type: String,
-    default: 'Ресурсный центр по вопросам инвалидности, как способ занятости молодых людей с инвалидностью',
-  },
-  logoCaption: {
-    type: String,
-    default: 'Ресурсный центр',
-  },
+interface HeroAction {
+  label: string
+  to: RouteLocationRaw
+  variant?: 'primary' | 'secondary' | 'text'
+}
+
+interface Props {
+  title: string
+  lead: string
+  actions?: HeroAction[]
+  headingId?: string
+  logoSrc?: string
+  logoAlt?: string
+  logoCaption?: string
+}
+
+withDefaults(defineProps<Props>(), {
+  actions: () => [],
+  headingId: 'page-title',
+  logoSrc: '/images/resource-center-logo-color.jpg',
+  logoAlt: 'Ресурсный центр по вопросам инвалидности, как способ занятости молодых людей с инвалидностью',
+  logoCaption: 'Ресурсный центр',
 })
 </script>
 

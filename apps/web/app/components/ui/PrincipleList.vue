@@ -1,16 +1,14 @@
-<script setup>
+<script setup lang="ts">
 defineOptions({ name: 'PrincipleList' })
 
-defineProps({
-  items: {
-    type: Array,
-    required: true,
-    validator: items => items.length === 3 && items.every(item => (
-      typeof item?.title === 'string'
-      && typeof item?.body === 'string'
-    )),
-  },
-})
+interface PrincipleItem {
+  title: string
+  body: string
+}
+
+defineProps<{
+  items: PrincipleItem[]
+}>()
 </script>
 
 <template>

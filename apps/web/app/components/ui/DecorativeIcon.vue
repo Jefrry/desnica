@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 defineOptions({ name: 'DecorativeIcon' })
 
 const iconPaths = {
@@ -13,24 +13,16 @@ const iconPaths = {
   search: ['M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16', 'm21 21-4.35-4.35'],
   settings: ['M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7', 'M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06-2.83 2.83-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21h-4v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06-2.83-2.83.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3v-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06L7.04 4.3l.06.06A1.65 1.65 0 0 0 8.92 4a1.65 1.65 0 0 0 1-1.51V2h4v.49A1.65 1.65 0 0 0 14.92 4a1.65 1.65 0 0 0 1.82.33l.06-.06 2.83 2.83-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21v4h-.09a1.65 1.65 0 0 0-1.51 1Z'],
   target: ['M12 22a10 10 0 1 0-10-10', 'M12 18a6 6 0 1 0-6-6', 'M12 14a2 2 0 1 0-2-2M22 2l-6 6M16 2h6v6'],
+} as const
+
+type DecorativeIconName = keyof typeof iconPaths
+
+interface Props {
+  name?: DecorativeIconName
 }
 
-defineProps({
-  name: {
-    type: String,
-    default: 'check',
-    validator: value => [
-      'building',
-      'check',
-      'document',
-      'education',
-      'layers',
-      'people',
-      'search',
-      'settings',
-      'target',
-    ].includes(value),
-  },
+withDefaults(defineProps<Props>(), {
+  name: 'check',
 })
 </script>
 

@@ -1,20 +1,15 @@
-<script setup>
+<script setup lang="ts">
 defineOptions({ name: 'QuoteBlock' })
 
-defineProps({
-  text: {
-    type: String,
-    required: true,
-  },
-  citation: {
-    type: String,
-    default: '',
-  },
-  tone: {
-    type: String,
-    default: 'accent',
-    validator: value => ['accent', 'surface'].includes(value),
-  },
+interface Props {
+  text: string
+  citation?: string
+  tone?: 'accent' | 'surface'
+}
+
+withDefaults(defineProps<Props>(), {
+  citation: '',
+  tone: 'accent',
 })
 </script>
 

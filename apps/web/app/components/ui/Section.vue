@@ -1,30 +1,22 @@
-<script setup>
+<script setup lang="ts">
 defineOptions({ name: 'ContentSection' })
 
-const props = defineProps({
-  id: {
-    type: String,
-    required: true,
-  },
-  title: {
-    type: String,
-    required: true,
-  },
-  headingLevel: {
-    type: String,
-    required: true,
-    validator: value => ['h2', 'h3'].includes(value),
-  },
-  tone: {
-    type: String,
-    default: 'default',
-    validator: value => ['default', 'subtle', 'accent'].includes(value),
-  },
+type SectionTone = 'default' | 'subtle' | 'accent'
+
+interface Props {
+  id: string
+  title: string
+  headingLevel: 'h2' | 'h3'
+  tone?: SectionTone
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  tone: 'default',
 })
 
 const headingId = `${props.id}-title`
 
-const toneClasses = {
+const toneClasses: Record<SectionTone, string> = {
   default: 'bg-surface',
   subtle: 'bg-surface-subtle',
   accent: 'bg-surface-accent',

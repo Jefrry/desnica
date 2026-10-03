@@ -1,37 +1,20 @@
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue'
 
 defineOptions({ name: 'ProgramCard' })
 
-const props = defineProps({
-  programId: {
-    type: String,
-    required: true,
-  },
-  assetId: {
-    type: String,
-    required: true,
-  },
-  src: {
-    type: String,
-    default: '',
-  },
-  alt: {
-    type: String,
-    required: true,
-  },
-  audience: {
-    type: String,
-    required: true,
-  },
-  title: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-    required: true,
-  },
+interface Props {
+  programId: string
+  assetId: string
+  src?: string
+  alt: string
+  audience: string
+  title: string
+  description: string
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  src: '',
 })
 
 const contactTo = computed(() => ({

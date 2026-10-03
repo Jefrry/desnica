@@ -7,7 +7,7 @@ defineOptions({ name: 'DefaultLayout' })
 const route = useRoute()
 
 watch(
-  () => route.fullPath,
+  () => route.path,
   async () => {
     await nextTick()
     document.getElementById('main-content')?.focus({ preventScroll: true })

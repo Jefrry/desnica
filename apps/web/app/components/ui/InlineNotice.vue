@@ -1,37 +1,34 @@
-<script setup>
+<script setup lang="ts">
 import { nextTick, onMounted, ref, watch } from 'vue'
 
 defineOptions({ name: 'InlineNotice' })
 
-const props = defineProps({
-  kind: {
-    type: String,
-    default: 'info',
-    validator: value => ['info', 'error', 'success'].includes(value),
-  },
-  text: {
-    type: String,
-    required: true,
-  },
-  announceChange: {
-    type: Boolean,
-    default: false,
-  },
+type NoticeKind = 'info' | 'error' | 'success'
+
+interface Props {
+  kind?: NoticeKind
+  text: string
+  announceChange?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  kind: 'info',
+  announceChange: false,
 })
 
-const labels = {
+const labels: Record<NoticeKind, string> = {
   info: 'Информация',
   error: 'Ошибка',
   success: 'Успешно',
 }
 
-const markers = {
+const markers: Record<NoticeKind, string> = {
   info: 'i',
   error: '!',
   success: '✓',
 }
 
-const noticeClasses = {
+const noticeClasses: Record<NoticeKind, string> = {
   info: 'border-brand-active bg-surface-accent text-brand-active',
   error: 'border-error bg-error-surface text-error',
   success: 'border-success bg-success-surface text-success',

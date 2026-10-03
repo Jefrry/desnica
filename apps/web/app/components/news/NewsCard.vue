@@ -1,31 +1,27 @@
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue'
 import { formatDate } from '~/utils/formatDate'
 
 defineOptions({ name: 'NewsCard' })
 
-const props = defineProps({
-  title: {
-    type: String,
-    required: true,
-  },
-  slug: {
-    type: String,
-    required: true,
-  },
-  excerpt: {
-    type: String,
-    required: true,
-  },
-  publishedAt: {
-    type: String,
-    required: true,
-  },
-  media: {
-    type: Object,
-    required: true,
-  },
-})
+interface NewsMedia {
+  assetId: string
+  src?: string
+  alt: string
+  width?: number
+  height?: number
+  focalPoint?: string
+}
+
+interface Props {
+  title: string
+  slug: string
+  excerpt: string
+  publishedAt: string
+  media: NewsMedia
+}
+
+const props = defineProps<Props>()
 
 const articleTo = computed(() => `/news/${encodeURIComponent(props.slug)}`)
 const readableDate = computed(() => formatDate(props.publishedAt))

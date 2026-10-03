@@ -1,34 +1,17 @@
-<script setup>
-import { isServiceRoute } from '~/constants/navigation'
-
+<script setup lang="ts">
 defineOptions({ name: 'ServiceCard' })
 
-defineProps({
-  assetId: {
-    type: String,
-    required: true,
-  },
-  src: {
-    type: String,
-    default: '',
-  },
-  alt: {
-    type: String,
-    required: true,
-  },
-  title: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-    required: true,
-  },
-  to: {
-    type: String,
-    required: true,
-    validator: isServiceRoute,
-  },
+interface Props {
+  assetId: string
+  src?: string
+  alt: string
+  title: string
+  description: string
+  to: string
+}
+
+withDefaults(defineProps<Props>(), {
+  src: '',
 })
 </script>
 

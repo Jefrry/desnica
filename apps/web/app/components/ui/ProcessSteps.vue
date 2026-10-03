@@ -1,18 +1,29 @@
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue'
 
 defineOptions({ name: 'ProcessSteps' })
 
-const props = defineProps({
-  items: {
-    type: Array,
-    required: true,
-  },
-  variant: {
-    type: String,
-    default: 'compact',
-    validator: value => ['compact', 'with-media'].includes(value),
-  },
+type DecorativeIconName = 'building' | 'check' | 'document' | 'education' | 'layers' | 'people' | 'search' | 'settings' | 'target'
+
+interface ProcessStep {
+  title: string
+  body: string
+  assetId?: string
+  src?: string
+  alt?: string
+  width?: number
+  height?: number
+  focalPoint?: string
+  icon?: DecorativeIconName
+}
+
+interface Props {
+  items: ProcessStep[]
+  variant?: 'compact' | 'with-media'
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  variant: 'compact',
 })
 
 const desktopColumns = computed(() => (

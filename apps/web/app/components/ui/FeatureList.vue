@@ -1,21 +1,21 @@
-<script setup>
+<script setup lang="ts">
 defineOptions({ name: 'FeatureList' })
 
-defineProps({
-  items: {
-    type: Array,
-    required: true,
-    validator: items => items.length > 0 && items.every(item => (
-      typeof item?.title === 'string'
-      && (item.body === undefined || typeof item.body === 'string')
-      && (item.icon === undefined || typeof item.icon === 'string')
-    )),
-  },
-  columns: {
-    type: Number,
-    default: 1,
-    validator: value => [1, 2].includes(value),
-  },
+type DecorativeIconName = 'building' | 'check' | 'document' | 'education' | 'layers' | 'people' | 'search' | 'settings' | 'target'
+
+interface FeatureItem {
+  title: string
+  body?: string
+  icon?: DecorativeIconName
+}
+
+interface Props {
+  items: FeatureItem[]
+  columns?: 1 | 2
+}
+
+withDefaults(defineProps<Props>(), {
+  columns: 1,
 })
 </script>
 

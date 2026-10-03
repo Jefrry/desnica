@@ -1,27 +1,38 @@
-<script setup>
+<script setup lang="ts">
+import type { RouteLocationRaw } from 'vue-router'
+
 defineOptions({ name: 'PageIntro' })
 
-defineProps({
-  title: {
-    type: String,
-    required: true,
-  },
-  lead: {
-    type: String,
-    required: true,
-  },
-  headingId: {
-    type: String,
-    default: 'page-title',
-  },
-  actions: {
-    type: Array,
-    default: () => [],
-  },
-  media: {
-    type: Object,
-    default: undefined,
-  },
+interface IntroAction {
+  label: string
+  to: RouteLocationRaw
+  variant?: 'primary' | 'secondary' | 'text'
+}
+
+interface IntroMedia {
+  assetId: string
+  src?: string
+  alt: string
+  width: number
+  height: number
+  ratio?: string | number
+  focalPoint?: string
+  caption?: string
+  loading?: 'eager' | 'lazy'
+}
+
+interface Props {
+  title: string
+  lead: string
+  headingId?: string
+  actions?: IntroAction[]
+  media?: IntroMedia
+}
+
+withDefaults(defineProps<Props>(), {
+  headingId: 'page-title',
+  actions: () => [],
+  media: undefined,
 })
 </script>
 

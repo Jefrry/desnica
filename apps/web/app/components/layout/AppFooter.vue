@@ -1,15 +1,14 @@
-<script setup>
+<script setup lang="ts">
 defineOptions({ name: 'AppFooter' })
 
-defineProps({
-  copyright: {
-    type: String,
-    default: '© Ресурсный центр',
-  },
-  legalTo: {
-    type: String,
-    default: '/legal',
-  },
+interface Props {
+  copyright?: string
+  legalTo?: string
+}
+
+withDefaults(defineProps<Props>(), {
+  copyright: '© Ресурсный центр',
+  legalTo: '/legal',
 })
 </script>
 

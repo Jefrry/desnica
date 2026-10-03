@@ -1,35 +1,23 @@
-<script setup>
+<script setup lang="ts">
+import type { RouteLocationRaw } from 'vue-router'
+
 defineOptions({ name: 'PersonCard' })
 
-defineProps({
-  assetId: {
-    type: String,
-    required: true,
-  },
-  src: {
-    type: String,
-    default: '',
-  },
-  alt: {
-    type: String,
-    required: true,
-  },
-  role: {
-    type: String,
-    required: true,
-  },
-  name: {
-    type: String,
-    default: '',
-  },
-  description: {
-    type: String,
-    default: '',
-  },
-  to: {
-    type: [String, Object],
-    default: undefined,
-  },
+interface Props {
+  assetId: string
+  src?: string
+  alt: string
+  role: string
+  name?: string
+  description?: string
+  to?: RouteLocationRaw
+}
+
+withDefaults(defineProps<Props>(), {
+  src: '',
+  name: '',
+  description: '',
+  to: undefined,
 })
 </script>
 

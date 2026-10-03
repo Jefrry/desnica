@@ -1,26 +1,23 @@
-<script setup>
-import { isServiceRoute } from '~/constants/navigation'
-
+<script setup lang="ts">
 defineOptions({ name: 'RelatedLinkCard' })
 
-defineProps({
-  to: {
-    type: String,
-    required: true,
-    validator: isServiceRoute,
-  },
-  title: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-    default: '',
-  },
-  media: {
-    type: Object,
-    default: undefined,
-  },
+interface RelatedMedia {
+  assetId: string
+  src?: string
+  width?: number
+  height?: number
+}
+
+interface Props {
+  to: string
+  title: string
+  description?: string
+  media?: RelatedMedia
+}
+
+withDefaults(defineProps<Props>(), {
+  description: '',
+  media: undefined,
 })
 </script>
 

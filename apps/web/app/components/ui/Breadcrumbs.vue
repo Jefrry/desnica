@@ -1,16 +1,20 @@
-<script setup>
+<script setup lang="ts">
+import type { RouteLocationRaw } from 'vue-router'
+
 defineOptions({ name: 'UiBreadcrumbs' })
 
-defineProps({
-  items: {
-    type: Array,
-    required: true,
-    validator: items => items.length > 0,
-  },
-  ariaLabel: {
-    type: String,
-    default: 'Хлебные крошки',
-  },
+interface BreadcrumbItem {
+  label: string
+  to?: RouteLocationRaw
+}
+
+interface Props {
+  items: BreadcrumbItem[]
+  ariaLabel?: string
+}
+
+withDefaults(defineProps<Props>(), {
+  ariaLabel: 'Хлебные крошки',
 })
 </script>
 
