@@ -14,7 +14,7 @@ Status: ready-for-agent
 
 Завершить оставшиеся общие компоненты C09–C13, собрать все страницы P01–P15 и выполнить итоговую проверку Q01, сохраняя существующий визуальный язык, структуру Nuxt-приложения, Tailwind-тему и доступное поведение C01–C08.
 
-Публикации должны поступать через единый типизированный контракт источника. В режиме предпросмотра контракт обслуживается двенадцатью согласованными моковыми публикациями; впоследствии тот же контракт подключается к существующей CMS без переделки страниц. Режим предпросмотра включается конфигурацией окружения для всего развёртывания, заметно маркируется и запрещает индексацию. Ошибка CMS никогда не включает моки автоматически.
+Публикации должны поступать через единый типизированный контракт источника. В режиме предпросмотра контракт обслуживается двенадцатью согласованными моковыми публикациями; впоследствии тот же контракт подключается к существующей CMS без переделки страниц. Режим предпросмотра включается конфигурацией окружения для всего развёртывания. Ошибка CMS никогда не включает моки автоматически.
 
 Отсутствующие материалы и интеграции представлены в предпросмотре безопасными моками через те же публичные контракты, которые будут использовать реальные данные. Такие моки явно обозначаются как демонстрационные, не заявляют фактическую или юридическую достоверность и не выполняют внешних действий. Вне режима предпросмотра отсутствие материала показывается честным недоступным состоянием.
 
@@ -114,7 +114,7 @@ Status: ready-for-agent
 - The four services and three training programs remain fixed domain definitions. Programs do not receive separate detail routes.
 - CMS ownership remains limited to publications. Navigation, services, programs, page copy, document/report structures and other design content remain typed, built-in data.
 - The publication UI depends on one typed source contract. Preview supplies twelve agreed mock publications; the real adapter uses the existing CMS. Switching is controlled by environment configuration, not by request failure.
-- Preview mode applies consistently to the entire deployment, is visibly labelled «Демонстрационное наполнение» and emits no-index metadata.
+- Preview mode applies consistently to the entire deployment and emits no-index metadata. A global preview banner is not rendered; individual demonstration materials retain truthful labels where needed.
 - Safe local preview mocks may represent missing photos, documents, video, contacts, legal text and integration states. They use future-facing data contracts, remain visibly demonstrational and never claim factual, legal or delivery validity.
 - Outside preview mode, unavailable assets and integrations render truthful unavailable states. Preview mocks never appear automatically in production.
 - Build all agreed primary routes: home; About overview, Mission, Documents and Reports; Services overview plus four service pages; Training; News archive and publication detail; NGO; Contacts. Also provide the legal destination and preserve the shared error page.

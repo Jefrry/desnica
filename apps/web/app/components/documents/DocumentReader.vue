@@ -46,13 +46,6 @@ withDefaults(defineProps<Props>(), {
         {{ title }}
       </h3>
 
-      <InlineNotice
-        v-if="textVersion.availability === 'available' && textVersion.source.kind === 'demonstration'"
-        class="mb-6"
-        kind="info"
-        :text="textVersion.source.disclaimer"
-      />
-
       <div
         v-if="textVersion.availability === 'available'"
         class="max-w-[46rem]"
