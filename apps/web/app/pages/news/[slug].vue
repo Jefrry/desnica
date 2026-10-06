@@ -1,19 +1,28 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { createError, definePageMeta, useAsyncData, useRoute, useSeoMeta } from '#imports'
-import { useNewsApi } from '~/api/newsApi'
+import { usePublicationSource } from '~/composables/publication/usePublicationSource'
 import { ERROR_MESSAGES, ERROR_STATUS } from '~/constants/errorConstants'
+import { parsePositivePage } from '~/utils/query/parsePositivePage'
+import { readQueryValue } from '~/utils/query/readQueryValue'
 
 defineOptions({ name: 'NewsArticlePage' })
 definePageMeta({ key: route => route.fullPath })
 
 const route = useRoute()
 const slug = computed(() => String(route.params.slug))
-const { getNewsBySlug } = useNewsApi()
+const publicationSource = usePublicationSource()
+const fromPage = computed(() => parsePositivePage(route.query.fromPage) ?? 1)
+const fromPublication = computed(() => readQueryValue(route.query.from))
+const archiveTo = computed(() => ({
+  path: '/news',
+  query: fromPage.value > 1 ? { page: String(fromPage.value) } : undefined,
+  hash: fromPublication.value ? `#publication-${fromPublication.value}` : undefined,
+}))
 
 const { data: article, error } = await useAsyncData(
   `news-${slug.value}`,
-  () => getNewsBySlug(slug.value),
+  () => publicationSource.getBySlug(slug.value),
 )
 
 if (error.value) {
@@ -46,7 +55,7 @@ useSeoMeta({
 <template>
   <div class="page-section">
     <nav aria-label="Хлебные крошки">
-      <NuxtLink to="/news">
+      <NuxtLink :to="archiveTo">
         Новости
       </NuxtLink>
     </nav>

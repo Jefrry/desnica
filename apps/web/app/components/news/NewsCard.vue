@@ -1,29 +1,27 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import type { RouteLocationRaw } from 'vue-router'
+import type { PublicationMedia } from '~/types/publication'
 import { formatDate } from '~/utils/formatDate'
 
 defineOptions({ name: 'NewsCard' })
-
-interface NewsMedia {
-  assetId: string
-  src?: string
-  alt: string
-  width?: number
-  height?: number
-  focalPoint?: string
-}
 
 interface Props {
   title: string
   slug: string
   excerpt: string
   publishedAt: string
-  media: NewsMedia
+  media: PublicationMedia
+  to?: RouteLocationRaw
+  missingLabel?: string
 }
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  to: undefined,
+  missingLabel: 'Фотография будет добавлена',
+})
 
-const articleTo = computed(() => `/news/${encodeURIComponent(props.slug)}`)
+const articleTo = computed(() => props.to || `/news/${encodeURIComponent(props.slug)}`)
 const readableDate = computed(() => formatDate(props.publishedAt))
 </script>
 
@@ -37,7 +35,8 @@ const readableDate = computed(() => formatDate(props.publishedAt))
       :height="media.height || 900"
       ratio="var(--news-card-ratio)"
       :focal-point="media.focalPoint"
-      class="[--news-card-ratio:16/9] phone:h-full phone:[--news-card-ratio:auto] phone:[&>div]:h-full tablet:h-auto tablet:[--news-card-ratio:16/9] tablet:[&>div]:h-auto"
+      :missing-label="missingLabel"
+      class="[--news-card-ratio:16/9] [&_[role=img]>span:last-child]:hidden phone:h-full phone:[--news-card-ratio:auto] phone:[&>div]:h-full tablet:h-auto tablet:[--news-card-ratio:16/9] tablet:[&>div]:h-auto"
     />
 
     <div class="flex min-w-0 flex-col p-4">

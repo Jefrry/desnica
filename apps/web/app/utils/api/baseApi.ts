@@ -1,5 +1,5 @@
 import { fetchApi } from './fetchApi';
-import { useRuntimeConfig } from '#imports';
+import { getCmsBaseUrl } from './getCmsBaseUrl';
 
 export type BaseApiProps = {
   path: string;
@@ -19,8 +19,8 @@ export function baseApi<T>({
   query,
   signal,
 }: BaseApiProps) {
-  const config = useRuntimeConfig();
-  const baseUrl = import.meta.server ? config.strapiUrl : config.public.strapiUrl;
+  const baseUrl = getCmsBaseUrl();
+
   const url = new URL(`api/${path.replace(/^\/+/, '')}`, `${baseUrl.replace(/\/$/, '')}/`);
   const headers = new Headers();
 

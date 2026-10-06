@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import { computed, nextTick, onMounted, watch } from 'vue'
 import { useRoute, useRouter, useSeoMeta } from '#imports'
-import {
-  previewDocuments,
-  productionDocuments,
-} from '~/constants/documentsAndReports'
+import { productionDocuments } from '~/constants/documentsAndReports'
+import { previewDocuments } from '~/constants/mocks/documentsAndReports'
 import { useDeploymentPreview } from '~/composables/useDeploymentPreview'
 import { selectDeploymentContent } from '~/utils/preview/selectDeploymentContent'
 import { readQueryValue } from '~/utils/query/readQueryValue'

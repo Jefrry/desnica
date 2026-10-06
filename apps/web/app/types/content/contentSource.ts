@@ -1,8 +1,5 @@
 export const DEMONSTRATION_CONTENT_LABEL = 'Демонстрационное наполнение' as const
 
-export const DEMONSTRATION_CONTENT_DISCLAIMER
-  = 'Материал предназначен для проверки макета и не подтверждает реальные факты, юридические сведения или выполненные действия.' as const
-
 export interface ConfirmedContentSource {
   kind: 'confirmed'
 }
@@ -10,7 +7,6 @@ export interface ConfirmedContentSource {
 export interface DemonstrationContentSource {
   kind: 'demonstration'
   label: typeof DEMONSTRATION_CONTENT_LABEL
-  disclaimer: typeof DEMONSTRATION_CONTENT_DISCLAIMER
 }
 
 export const CONFIRMED_CONTENT_SOURCE: ConfirmedContentSource = {
@@ -20,7 +16,6 @@ export const CONFIRMED_CONTENT_SOURCE: ConfirmedContentSource = {
 export const DEMONSTRATION_CONTENT_SOURCE: DemonstrationContentSource = {
   kind: 'demonstration',
   label: DEMONSTRATION_CONTENT_LABEL,
-  disclaimer: DEMONSTRATION_CONTENT_DISCLAIMER,
 }
 
 interface AvailableContent<T> {

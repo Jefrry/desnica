@@ -59,7 +59,7 @@ const {
 
       <div
         v-else
-        class="flex size-full flex-col items-center justify-center gap-2 p-4 text-center text-muted"
+        class="flex size-full min-w-0 flex-col items-center justify-center gap-2 p-4 text-center text-muted"
         role="img"
         :aria-label="missingAccessibleLabel"
       >
@@ -94,12 +94,12 @@ const {
           />
         </svg>
         <span
-          class="text-control font-semibold text-ink"
+          class="max-w-full break-words text-control font-semibold text-ink"
           aria-hidden="true"
         >{{ missingLabel }}</span>
         <span
           v-if="alt"
-          class="text-caption"
+          class="max-w-full break-words text-caption"
           aria-hidden="true"
         >{{ alt }}</span>
       </div>
