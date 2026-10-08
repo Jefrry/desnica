@@ -8,6 +8,7 @@ import type {
 } from '~/types/publication'
 import { ApiError, baseApi, getCmsBaseUrl } from '~/utils/api'
 import { ERROR_MESSAGES, ERROR_STATUS } from '~/constants/errorConstants'
+import { adaptPlainTextArticleContent } from '~/utils/publication/adaptPlainTextArticleContent'
 
 export class NewsNotFoundError extends ApiError {
   constructor(slug: string, options?: ErrorOptions) {
@@ -22,13 +23,17 @@ export function useNewsApi() {
   // Changes data structure from cms to landing format
   function formatPublication(article: CmsPublication): Publication {
     const { cover, ...publication } = article
+    const formattedPublication = {
+      ...publication,
+      body: adaptPlainTextArticleContent(article.content),
+    }
 
     if (!cover) {
-      return publication
+      return formattedPublication
     }
 
     return {
-      ...publication,
+      ...formattedPublication,
       media: {
         assetId: cover.documentId || `publication-${article.documentId}`,
         src: new URL(cover.url, `${cmsBaseUrl.replace(/\/$/, '')}/`).toString(),

@@ -4,11 +4,15 @@ export interface Publication {
   title: string
   slug: string
   excerpt: string | null
+  lead?: string
   content: string
   createdAt: string
   updatedAt: string
   publishedAt: string
   media?: PublicationMedia
+  author?: string
+  body?: readonly ArticleBlock[]
+  relatedSlugs?: readonly string[]
 }
 
 export interface PublicationMedia {
@@ -18,7 +22,43 @@ export interface PublicationMedia {
   width?: number
   height?: number
   focalPoint?: string
+  caption?: string
 }
+
+export interface ArticleParagraphBlock {
+  type: 'paragraph'
+  text: string
+}
+
+export interface ArticleHeadingBlock {
+  type: 'heading'
+  id: string
+  text: string
+}
+
+export interface ArticleImageBlock {
+  type: 'image'
+  media: PublicationMedia
+}
+
+export interface ArticleQuoteBlock {
+  type: 'quote'
+  text: string
+  citation?: string
+}
+
+export interface ArticleListBlock {
+  type: 'list'
+  items: readonly string[]
+  ordered?: boolean
+}
+
+export type ArticleBlock =
+  | ArticleParagraphBlock
+  | ArticleHeadingBlock
+  | ArticleImageBlock
+  | ArticleQuoteBlock
+  | ArticleListBlock
 
 export interface CmsPublicationMedia {
   documentId?: string

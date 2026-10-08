@@ -1,4 +1,8 @@
 import type { Publication } from '~/types/publication'
+import {
+  primaryPreviewArticleBody,
+  primaryPreviewArticleLead,
+} from '~/constants/mocks/previewArticleContent'
 
 interface PreviewPublicationSeed {
   documentId: string
@@ -24,18 +28,33 @@ const previewPublicationSeeds: PreviewPublicationSeed[] = [
   { documentId: 'N12', slug: 'partnership-start', publishedAt: '2026-08-05', title: 'Первый шаг к сотрудничеству', excerpt: 'Готовим краткое описание инициативы и ожидаемого результата.', assetId: 'ngo-initiatives' },
 ]
 
-export const previewPublications: Publication[] = previewPublicationSeeds.map((publication, index) => ({
-  id: index + 1,
-  documentId: publication.documentId,
-  title: publication.title,
-  slug: publication.slug,
-  excerpt: publication.excerpt,
-  content: publication.excerpt,
-  createdAt: `${publication.publishedAt}T09:00:00.000Z`,
-  updatedAt: `${publication.publishedAt}T09:00:00.000Z`,
-  publishedAt: `${publication.publishedAt}T09:00:00.000Z`,
-  media: {
-    assetId: publication.assetId,
-    alt: `Иллюстрация к публикации «${publication.title}»`,
-  },
-}))
+export const previewPublications: Publication[] = previewPublicationSeeds.map((publication, index) => {
+  const fallbackArticleText = `${publication.excerpt} Этот демонстрационный материал показывает структуру страницы публикации. Полный текст будет подготовлен редакцией.`
+
+  return {
+    id: index + 1,
+    documentId: publication.documentId,
+    title: publication.title,
+    slug: publication.slug,
+    excerpt: publication.excerpt,
+    lead: index === 0 ? primaryPreviewArticleLead : publication.excerpt,
+    content: index === 0 ? primaryPreviewArticleLead : fallbackArticleText,
+    createdAt: `${publication.publishedAt}T09:00:00.000Z`,
+    updatedAt: `${publication.publishedAt}T09:00:00.000Z`,
+    publishedAt: `${publication.publishedAt}T09:00:00.000Z`,
+    media: {
+      assetId: publication.assetId,
+      alt: `Иллюстрация к публикации «${publication.title}»`,
+      caption: index === 0
+        ? 'Участники обсуждают опыт и возможные решения. Демонстрационное фото'
+        : undefined,
+    },
+    author: index === 0 ? 'Редакция Ресурсного центра' : undefined,
+    body: index === 0
+      ? primaryPreviewArticleBody
+      : [{ type: 'paragraph', text: fallbackArticleText }],
+    relatedSlugs: index === 0
+      ? ['equal-opportunities-learning', 'ngo-from-idea-to-action']
+      : undefined,
+  }
+})
