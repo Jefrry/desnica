@@ -61,7 +61,7 @@ withDefaults(defineProps<Props>(), {
     </div>
 
     <figure
-      class="m-0 min-w-0 rounded-card border border-border-subtle bg-surface p-4 phone:p-6 tablet:p-8"
+      class="m-0 min-w-0 bg-surface p-4 phone:p-6 tablet:p-8"
       :aria-label="logoCaption"
     >
       <img

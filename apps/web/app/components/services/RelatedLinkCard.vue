@@ -27,7 +27,7 @@ withDefaults(defineProps<Props>(), {
   <NuxtLink
     :to="to"
     :aria-label="title"
-    class="group flex min-h-control min-w-0 items-center gap-3 rounded-card border border-border-subtle bg-surface p-3 text-ink no-underline transition-colors hover:border-brand hover:bg-surface-accent hover:text-ink hover:no-underline"
+    class="group flex h-full min-h-control min-w-0 items-center gap-3 rounded-card border border-border-subtle bg-surface p-3 text-ink no-underline transition-colors hover:border-brand hover:bg-surface-accent hover:text-ink hover:no-underline"
   >
     <FigureMedia
       v-if="media"

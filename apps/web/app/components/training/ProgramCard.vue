@@ -16,7 +16,7 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <article class="min-w-0 overflow-hidden rounded-card border border-border-subtle bg-surface">
+  <article class="h-full min-w-0 overflow-hidden rounded-card border border-border-subtle bg-surface">
     <div class="relative">
       <FigureMedia
         :asset-id="assetId"

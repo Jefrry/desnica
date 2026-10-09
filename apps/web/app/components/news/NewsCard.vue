@@ -26,7 +26,7 @@ const readableDate = computed(() => formatDate(props.publishedAt))
 </script>
 
 <template>
-  <article class="min-w-0 overflow-hidden rounded-card border border-border-subtle bg-surface phone:grid phone:grid-cols-[37%_minmax(0,1fr)] tablet:block">
+  <article class="h-full min-w-0 overflow-hidden rounded-card border border-border-subtle bg-surface phone:grid phone:grid-cols-[37%_minmax(0,1fr)] tablet:block">
     <FigureMedia
       :asset-id="media.assetId"
       :src="media.src"

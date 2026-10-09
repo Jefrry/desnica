@@ -18,7 +18,7 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <article class="flex min-w-0 items-center gap-4 overflow-hidden rounded-card border border-border-subtle bg-surface p-3 tablet:block tablet:p-0">
+  <article class="flex h-full min-w-0 items-center gap-4 overflow-hidden rounded-card border border-border-subtle bg-surface p-3 tablet:block tablet:p-0">
     <FigureMedia
       :asset-id="assetId"
       :src="src"
