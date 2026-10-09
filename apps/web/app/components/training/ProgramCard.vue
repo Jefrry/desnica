@@ -1,10 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-
 defineOptions({ name: 'ProgramCard' })
 
 interface Props {
-  programId: string
   assetId: string
   src?: string
   alt: string
@@ -13,15 +10,9 @@ interface Props {
   description: string
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   src: '',
 })
-
-const contactTo = computed(() => ({
-  path: '/contacts',
-  query: { program: props.programId },
-  hash: '#contact-form',
-}))
 </script>
 
 <template>
@@ -47,7 +38,7 @@ const contactTo = computed(() => ({
         {{ description }}
       </p>
       <ActionLink
-        :to="contactTo"
+        to="/contacts"
         variant="secondary"
       >
         Узнать о программе
