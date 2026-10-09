@@ -1,8 +1,4 @@
-export interface TeamMember {
-  assetId: string
-  alt: string
-  role: string
-}
+import type { TeamMember } from '~/types/team/team'
 
 export const TEAM_MEMBERS: readonly TeamMember[] = [
   {
