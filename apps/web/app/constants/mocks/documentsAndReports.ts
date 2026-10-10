@@ -7,19 +7,12 @@ import type {
   ReportCover,
 } from '~/types/document/document'
 import type { ContentResource } from '~/types/content/contentSource'
-import { DEMONSTRATION_CONTENT_SOURCE } from '~/types/content/contentSource'
+import { DEMONSTRATION_CONTENT_SOURCE, unavailableContent } from '~/types/content/contentSource'
 import {
   documentDefinitions,
   reportFeatures,
   reportYears,
 } from '~/constants/documentsAndReports'
-
-function unavailable<T>(message: string): ContentResource<T> {
-  return {
-    availability: 'unavailable',
-    message,
-  }
-}
 
 function demonstrationText(sections: readonly DocumentSection[]): ContentResource<DocumentText> {
   return {
@@ -40,7 +33,7 @@ function demonstrationCover(year: string): ContentResource<ReportCover> {
   }
 }
 
-const missingDocumentFile = () => unavailable<DocumentFile>('Файл пока не добавлен')
+const missingDocumentFile = () => unavailableContent<DocumentFile>('Файл пока не добавлен')
 
 export const previewDocuments: readonly DocumentContent[] = [
   {

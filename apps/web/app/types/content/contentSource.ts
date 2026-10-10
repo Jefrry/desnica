@@ -30,3 +30,10 @@ export interface UnavailableContent {
 }
 
 export type ContentResource<T> = AvailableContent<T> | UnavailableContent
+
+export function unavailableContent<T>(message: string): ContentResource<T> {
+  return {
+    availability: 'unavailable',
+    message,
+  }
+}

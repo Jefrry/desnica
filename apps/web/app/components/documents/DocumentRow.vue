@@ -14,6 +14,7 @@ interface Props {
   bytes?: number
   date?: string
   available?: boolean
+  showReadAction?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -23,6 +24,7 @@ const props = withDefaults(defineProps<Props>(), {
   bytes: undefined,
   date: undefined,
   available: true,
+  showReadAction: true,
 })
 
 const route = useRoute()
@@ -102,14 +104,14 @@ function formatBytes(bytes: number) {
 
     <div class="flex min-w-0 flex-wrap items-start gap-x-3 gap-y-2 tablet:col-start-2 desktop:col-start-auto">
       <ActionLink
-        v-if="readLocation"
+        v-if="showReadAction && readLocation"
         :to="readLocation"
         variant="secondary"
       >
         Читать на сайте
       </ActionLink>
       <ActionLink
-        v-else
+        v-else-if="showReadAction"
         variant="secondary"
       >
         Читать на сайте
@@ -126,7 +128,7 @@ function formatBytes(bytes: number) {
         v-else
         variant="secondary"
       >
-        Скачать PDF
+        Файл пока недоступен
       </ActionLink>
     </div>
   </article>
