@@ -4,14 +4,10 @@ import {
   previewLocalDocumentFaqItems,
   previewLocalDocumentFeatures,
 } from '~/constants/mocks/localDocuments'
-import { previewServices } from '~/constants/mocks/services'
 
 defineOptions({ name: 'LocalDocumentsServicePage' })
 
 const requestUrl = useRequestURL()
-const relatedServices = previewServices.filter(service => (
-  service.id === 'odi' || service.id === 'project-review'
-))
 
 useSeoMeta({
   title: 'Разработка локальных документов',
@@ -130,19 +126,7 @@ useHead({
         <h2 id="local-documents-related-heading">
           Другие услуги
         </h2>
-        <ul class="m-0 grid list-none gap-4 p-0 tablet:grid-cols-2">
-          <li
-            v-for="service in relatedServices"
-            :key="service.id"
-          >
-            <RelatedLinkCard
-              :to="service.to"
-              :title="service.title"
-              :description="service.description"
-              :media="{ assetId: service.assetId }"
-            />
-          </li>
-        </ul>
+        <RelatedServiceList :service-ids="['odi', 'project-review']" />
       </section>
     </Container>
 
