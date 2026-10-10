@@ -4,6 +4,10 @@ export const ERROR_STATUS = {
   BAD_GATEWAY: 502,
 } as const
 
+export const ERROR_CONTEXT = {
+  PUBLICATION: 'publication',
+} as const
+
 export const ERROR_MESSAGES = {
   UNAUTHORIZED: 'Unauthorized',
   NEWS_NOT_FOUND: 'Новость не найдена',
@@ -11,6 +15,8 @@ export const ERROR_MESSAGES = {
   NEWS_LOAD_FAILED: 'Не удалось получить новость',
   PAGE_NOT_FOUND: 'Страница не найдена',
   PAGE_LOAD_FAILED: 'Не удалось загрузить страницу',
+  MISSING_PAGE_DESCRIPTION: 'Возможно, адрес указан неверно или страница была перемещена.',
+  PAGE_LOAD_FAILED_DESCRIPTION: 'Попробуйте обновить страницу или вернуться позже.',
   MISSING_NEWS_DESCRIPTION: 'Возможно, новость была удалена или ещё не опубликована.',
   NEWS_SERVICE_FAILED: 'При обращении к сервису новостей произошла ошибка.',
   API_REQUEST_FAILED: (status: number) => `API request failed with status ${status}`,

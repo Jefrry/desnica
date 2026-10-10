@@ -29,7 +29,7 @@ const previewPublicationSeeds: PreviewPublicationSeed[] = [
 ]
 
 export const previewPublications: Publication[] = previewPublicationSeeds.map((publication, index) => {
-  const fallbackArticleText = `${publication.excerpt} Этот демонстрационный материал показывает структуру страницы публикации. Полный текст будет подготовлен редакцией.`
+  const fallbackArticleText = `${publication.excerpt} Полный текст будет подготовлен редакцией.`
 
   return {
     id: index + 1,
@@ -46,7 +46,7 @@ export const previewPublications: Publication[] = previewPublicationSeeds.map((p
       assetId: publication.assetId,
       alt: `Иллюстрация к публикации «${publication.title}»`,
       caption: index === 0
-        ? 'Участники обсуждают опыт и возможные решения. Демонстрационное фото'
+        ? 'Участники обсуждают опыт и возможные решения.'
         : undefined,
     },
     author: index === 0 ? 'Редакция Ресурсного центра' : undefined,

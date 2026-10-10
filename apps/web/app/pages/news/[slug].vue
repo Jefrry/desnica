@@ -10,7 +10,6 @@ const {
   article,
   articleBlocks,
   breadcrumbTitle,
-  isPreviewMode,
   relatedArticles,
   tocItems,
 } = await usePublicationDetailPage()
@@ -54,7 +53,7 @@ const {
             :focal-point="article.media.focalPoint"
             :caption="article.media.caption"
             loading="eager"
-            :missing-label="isPreviewMode ? 'Демонстрационный материал' : 'Фотография будет добавлена'"
+            missing-label="Фотография будет добавлена"
           />
         </header>
 
@@ -65,7 +64,7 @@ const {
           />
           <ArticleBody
             :blocks="articleBlocks"
-            :missing-media-label="isPreviewMode ? 'Демонстрационный материал' : 'Фотография будет добавлена'"
+            missing-media-label="Фотография будет добавлена"
             :class="tocItems.length ? 'w-full flex-1' : 'w-full desktop:ml-auto'"
           />
         </div>
@@ -94,7 +93,7 @@ const {
                 assetId: `publication-${relatedArticle.documentId}`,
                 alt: `Иллюстрация к публикации «${relatedArticle.title}»`,
               }"
-              :missing-label="isPreviewMode ? 'Демонстрационный материал' : 'Фотография будет добавлена'"
+              missing-label="Фотография будет добавлена"
             />
           </li>
         </ul>

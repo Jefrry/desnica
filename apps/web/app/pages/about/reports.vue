@@ -111,7 +111,7 @@ async function scrollToReportReader() {
           alt: 'Команда Ресурсного центра обсуждает работу',
           width: 720,
           height: 480,
-          caption: isPreviewMode ? 'Демонстрационный материал: рабочая встреча' : 'Фотография будет добавлена',
+          caption: 'Фотография будет добавлена',
           loading: 'eager',
         }"
       />
@@ -156,7 +156,7 @@ async function scrollToReportReader() {
           alt="Обсуждение годового отчёта"
           :width="720"
           :height="480"
-          :caption="isPreviewMode ? 'Демонстрационный материал: обсуждение отчёта' : 'Фотография будет добавлена'"
+          caption="Фотография будет добавлена"
         />
         <div class="min-w-0 tablet:order-2">
           <h2 id="about-annual-reports-heading">
@@ -176,7 +176,7 @@ async function scrollToReportReader() {
       class="mt-12 tablet:mt-16"
       title="Остались вопросы по отчётности?"
       text="Напишите нам — обсудим детали и подскажем, где найти нужную информацию."
-      cta-to="/contacts?topic=reports#contact-form"
+      cta-to="/contacts"
     />
   </div>
 </template>

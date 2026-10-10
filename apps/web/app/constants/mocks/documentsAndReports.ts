@@ -28,7 +28,7 @@ function demonstrationCover(year: string): ContentResource<ReportCover> {
     source: DEMONSTRATION_CONTENT_SOURCE,
     data: {
       assetId: 'report-cover-2025',
-      alt: `Демонстрационная обложка годового отчёта за ${year} год`,
+      alt: `Обложка годового отчёта за ${year} год`,
     },
   }
 }
@@ -93,7 +93,7 @@ function createPreviewReport(year: string): AnnualReport {
       {
         id: `report-${year}-summary`,
         paragraphs: [
-          `Демонстрационная структура отчёта за ${year} год. Здесь будут сведения о программах, команде и использовании средств. Подтверждённые данные и файл пока не добавлены.`,
+          `Структура отчёта за ${year} год. Здесь будут сведения о программах, команде и использовании средств. Подтверждённые данные и файл пока не добавлены.`,
         ],
       },
     ]),

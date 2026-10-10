@@ -59,9 +59,7 @@ function yearLocation(year: string) {
 
       <template v-else>
         <p class="text-intro mb-6">
-          {{ report.textVersion.availability === 'available' && report.textVersion.source.kind === 'demonstration'
-            ? 'Пример структуры отчёта'
-            : 'Материалы годового отчёта' }}
+          Материалы годового отчёта
         </p>
 
         <div class="grid gap-6 desktop:grid-cols-[minmax(0,1.25fr)_minmax(17rem,0.75fr)]">
@@ -85,7 +83,7 @@ function yearLocation(year: string) {
                   Годовой<br>отчёт<br>{{ report.year }}
                 </p>
                 <p class="m-0 text-caption text-muted">
-                  Демонстрационная обложка
+                  Годовой отчёт
                 </p>
               </div>
             </div>

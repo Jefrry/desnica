@@ -8,7 +8,6 @@ import {
   useRoute,
   useSeoMeta,
 } from '#imports'
-import { useDeploymentPreview } from '~/composables/useDeploymentPreview'
 import { usePublicationSource } from '~/composables/publication/usePublicationSource'
 import type { PublicationPage } from '~/types/publication'
 import { parsePositivePage } from '~/utils/query/parsePositivePage'
@@ -20,7 +19,6 @@ const PAGE_SIZE = 6
 const route = useRoute()
 const requestUrl = useRequestURL()
 const publicationSource = usePublicationSource()
-const isPreviewMode = useDeploymentPreview()
 const pendingFocusPage = ref<number>()
 const pageAnnouncement = ref('')
 
@@ -202,7 +200,7 @@ function articleTo(slug: string, documentId: string) {
                     alt: `Иллюстрация к публикации «${publication.title}»`,
                   }"
                   :to="articleTo(publication.slug, publication.documentId)"
-                  :missing-label="isPreviewMode ? 'Демонстрационный материал' : 'Фотография будет добавлена'"
+                  missing-label="Фотография будет добавлена"
                 />
               </li>
             </ul>

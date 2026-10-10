@@ -7,9 +7,8 @@ import {
   useRoute,
   useSeoMeta,
 } from '#imports'
-import { useDeploymentPreview } from '~/composables/useDeploymentPreview'
 import { usePublicationSource } from '~/composables/publication/usePublicationSource'
-import { ERROR_MESSAGES, ERROR_STATUS } from '~/constants/errorConstants'
+import { ERROR_CONTEXT, ERROR_MESSAGES, ERROR_STATUS } from '~/constants/errorConstants'
 import type { ArticleHeadingBlock } from '~/types/publication'
 import { adaptPlainTextArticleContent } from '~/utils/publication/adaptPlainTextArticleContent'
 import { parsePositivePage } from '~/utils/query/parsePositivePage'
@@ -19,7 +18,6 @@ export async function usePublicationDetailPage() {
   const route = useRoute()
   const requestUrl = useRequestURL()
   const publicationSource = usePublicationSource()
-  const isPreviewMode = useDeploymentPreview()
   const slug = computed(() => String(route.params.slug))
   const fromPage = computed(() => parsePositivePage(route.query.fromPage) ?? 1)
   const fromPublication = computed(() => readQueryValue(route.query.from))
@@ -54,6 +52,7 @@ export async function usePublicationDetailPage() {
       statusText: status === ERROR_STATUS.NOT_FOUND
         ? ERROR_MESSAGES.NEWS_NOT_FOUND
         : ERROR_MESSAGES.NEWS_LOAD_FAILED,
+      data: { context: ERROR_CONTEXT.PUBLICATION },
       cause: error.value,
     })
   }
@@ -62,6 +61,7 @@ export async function usePublicationDetailPage() {
     throw createError({
       status: ERROR_STATUS.NOT_FOUND,
       statusText: ERROR_MESSAGES.NEWS_NOT_FOUND,
+      data: { context: ERROR_CONTEXT.PUBLICATION },
     })
   }
 
@@ -85,7 +85,6 @@ export async function usePublicationDetailPage() {
     article,
     articleBlocks,
     breadcrumbTitle,
-    isPreviewMode,
     relatedArticles,
     tocItems,
   }
