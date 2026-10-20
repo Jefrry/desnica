@@ -20,7 +20,9 @@ RUN --mount=type=cache,id=pnpm,target=/pnpm/store \
 
 COPY apps/cms apps/cms
 
-RUN pnpm --filter @desnica/cms build && \
+ARG CMS_BUILD_HEAP_MB=2048
+
+RUN NODE_OPTIONS="--max-old-space-size=${CMS_BUILD_HEAP_MB}" pnpm --filter @desnica/cms build && \
     pnpm --filter @desnica/cms deploy --prod --legacy /prod/cms && \
     cp -R apps/cms/dist /prod/cms/dist
 

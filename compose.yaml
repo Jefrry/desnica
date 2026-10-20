@@ -23,6 +23,8 @@ services:
     build:
       context: .
       dockerfile: apps/cms/Dockerfile
+      args:
+        CMS_BUILD_HEAP_MB: ${CMS_BUILD_HEAP_MB:-2048}
     restart: unless-stopped
     init: true
     environment:
