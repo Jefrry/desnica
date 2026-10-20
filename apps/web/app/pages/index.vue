@@ -38,7 +38,6 @@ useSeoMeta({
           { label: 'О Ресурсном центре', to: '/about', variant: 'secondary' },
         ]"
       />
-      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     </Container>
 
     <Section
