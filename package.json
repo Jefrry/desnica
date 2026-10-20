@@ -11,6 +11,7 @@
     "dev": "pnpm --parallel --filter @desnica/web --filter @desnica/cms dev",
     "build": "pnpm --recursive --filter @desnica/web --filter @desnica/cms build",
     "lint": "eslint apps --max-warnings=0",
+    "test": "pnpm --filter @desnica/web test",
     "typecheck": "pnpm --recursive --filter @desnica/web --filter @desnica/cms typecheck"
   },
   "devDependencies": {
