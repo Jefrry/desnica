@@ -1,23 +1,14 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import { useHead, useRequestURL, useSeoMeta } from '#imports'
 import {
   previewNgoMaterials,
-  productionNgoMaterials,
   ngoSupportAreas,
 } from '~/constants/ngo'
-import { useDeploymentPreview } from '~/composables/useDeploymentPreview'
-import { selectDeploymentContent } from '~/utils/preview/selectDeploymentContent'
 
 defineOptions({ name: 'NgoPage' })
 
 const requestUrl = useRequestURL()
-const isPreviewMode = useDeploymentPreview()
-const ngoMaterials = computed(() => selectDeploymentContent({
-  previewMode: isPreviewMode.value,
-  production: productionNgoMaterials,
-  preview: previewNgoMaterials,
-}))
+const ngoMaterials = previewNgoMaterials
 
 useSeoMeta({
   title: 'Работа НКО',
@@ -104,7 +95,6 @@ useHead({
           />
         </div>
       </section>
-
     </Container>
   </div>
 </template>

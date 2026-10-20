@@ -1,7 +1,11 @@
 import type { Core } from '@strapi/strapi';
 
-const config: Core.Config.Middlewares = [
+const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Middlewares => [
   'strapi::logger',
+  {
+    name: 'global::search-indexing',
+    config: { allowed: env.bool('INDEXING_ALLOWED', false) },
+  },
   'strapi::errors',
   'strapi::security',
   'strapi::cors',

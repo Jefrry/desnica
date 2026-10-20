@@ -43,12 +43,6 @@ const ngoMaterialDefinitions = [
   },
 ] as const
 
-export const productionNgoMaterials: readonly DocumentContent[] = ngoMaterialDefinitions.map(material => ({
-  ...material,
-  textVersion: unavailableContent<DocumentText>('Текстовая версия пока не опубликована.'),
-  file: unavailableContent<DocumentFile>('Файл пока не добавлен.'),
-}))
-
 const previewFiles = {
   'ngo-guide': {
     href: '/materials/ngo-guide.txt',

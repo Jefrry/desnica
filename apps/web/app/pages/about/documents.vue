@@ -1,26 +1,18 @@
 <script setup lang="ts">
 import { computed, nextTick, onMounted, watch } from 'vue'
 import { useRoute, useRouter, useSeoMeta } from '#imports'
-import { productionDocuments } from '~/constants/documentsAndReports'
 import { previewDocuments } from '~/constants/mocks/documentsAndReports'
-import { useDeploymentPreview } from '~/composables/useDeploymentPreview'
-import { selectDeploymentContent } from '~/utils/preview/selectDeploymentContent'
 import { readQueryValue } from '~/utils/query/readQueryValue'
 
 defineOptions({ name: 'AboutDocumentsPage' })
 
 const route = useRoute()
 const router = useRouter()
-const isPreviewMode = useDeploymentPreview()
 
-const documents = computed(() => selectDeploymentContent({
-  previewMode: isPreviewMode.value,
-  production: productionDocuments,
-  preview: previewDocuments,
-}))
+const documents = previewDocuments
 
 const selectedDocumentId = computed(() => readQueryValue(route.query.document) || 'charter')
-const selectedDocument = computed(() => documents.value.find(document => document.id === selectedDocumentId.value))
+const selectedDocument = computed(() => documents.find(document => document.id === selectedDocumentId.value))
 
 const tocItems = [
   { id: 'documents-intro', label: 'Назначение документов' },

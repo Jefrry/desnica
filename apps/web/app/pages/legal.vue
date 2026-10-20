@@ -1,21 +1,10 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import { useSeoMeta } from '#imports'
-import {
-  productionLegalText,
-} from '~/constants/legal'
 import { previewLegalText } from '~/constants/mocks/legal'
-import { useDeploymentPreview } from '~/composables/useDeploymentPreview'
-import { selectDeploymentContent } from '~/utils/preview/selectDeploymentContent'
 
 defineOptions({ name: 'LegalPage' })
 
-const isPreviewMode = useDeploymentPreview()
-const legalText = computed(() => selectDeploymentContent({
-  previewMode: isPreviewMode.value,
-  production: productionLegalText,
-  preview: previewLegalText,
-}))
+const legalText = previewLegalText
 
 useSeoMeta({
   title: 'Правовая информация',

@@ -6,7 +6,8 @@ import type {
   PublicationPage,
   PublicationResponse,
 } from '~/types/publication'
-import { ApiError, baseApi, getCmsBaseUrl } from '~/utils/api'
+import { useRuntimeConfig } from '#imports'
+import { ApiError, baseApi } from '~/utils/api'
 import { ERROR_MESSAGES, ERROR_STATUS } from '~/constants/errorConstants'
 import { adaptPlainTextArticleContent } from '~/utils/publication/adaptPlainTextArticleContent'
 
@@ -18,7 +19,7 @@ export class NewsNotFoundError extends ApiError {
 }
 
 export function useNewsApi() {
-  const cmsBaseUrl = getCmsBaseUrl()
+  const cmsBaseUrl = useRuntimeConfig().public.strapiUrl
 
   // Changes data structure from cms to landing format
   function formatPublication(article: CmsPublication): Publication {

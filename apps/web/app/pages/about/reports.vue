@@ -1,28 +1,20 @@
 <script setup lang="ts">
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter, useSeoMeta } from '#imports'
-import { productionReports } from '~/constants/documentsAndReports'
 import { previewReports } from '~/constants/mocks/documentsAndReports'
-import { useDeploymentPreview } from '~/composables/useDeploymentPreview'
-import { selectDeploymentContent } from '~/utils/preview/selectDeploymentContent'
 import { readQueryValue } from '~/utils/query/readQueryValue'
 
 defineOptions({ name: 'AboutReportsPage' })
 
 const route = useRoute()
 const router = useRouter()
-const isPreviewMode = useDeploymentPreview()
 const pendingFocusYear = ref<string>()
 
-const reports = computed(() => selectDeploymentContent({
-  previewMode: isPreviewMode.value,
-  production: productionReports,
-  preview: previewReports,
-}))
+const reports = previewReports
 
-const years = computed(() => reports.value.map(report => report.year))
+const years = computed(() => reports.map(report => report.year))
 const selectedYear = computed(() => readQueryValue(route.query.year) || years.value[0] || '2025')
-const selectedReport = computed(() => reports.value.find(report => report.year === selectedYear.value))
+const selectedReport = computed(() => reports.find(report => report.year === selectedYear.value))
 const archiveYears = computed(() => years.value.filter(year => year !== selectedYear.value))
 const showReader = computed(() => route.hash === '#report-reader' && Boolean(selectedReport.value))
 

@@ -7,7 +7,7 @@ services:
     environment:
       POSTGRES_DB: ${DATABASE_NAME:-strapi}
       POSTGRES_USER: ${DATABASE_USERNAME:-strapi}
-      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-strapi-local-password}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:?Generate .env with scripts/setup-server.mjs}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -31,18 +31,20 @@ services:
       HOST: 0.0.0.0
       PORT: 1337
       PUBLIC_URL: ${PUBLIC_URL:-http://localhost:1337}
-      APP_KEYS: ${APP_KEYS:-local-app-key-1,local-app-key-2,local-app-key-3,local-app-key-4}
-      API_TOKEN_SALT: ${API_TOKEN_SALT:-local-api-token-salt}
-      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET:-local-admin-jwt-secret}
-      TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT:-local-transfer-token-salt}
-      JWT_SECRET: ${JWT_SECRET:-local-jwt-secret}
-      ENCRYPTION_KEY: ${ENCRYPTION_KEY:-local-encryption-key}
+      IS_PROXIED: ${IS_PROXIED:-false}
+      INDEXING_ALLOWED: ${CMS_INDEXING_ALLOWED:-false}
+      APP_KEYS: ${APP_KEYS:?Generate .env with scripts/setup-server.mjs}
+      API_TOKEN_SALT: ${API_TOKEN_SALT:?Generate .env with scripts/setup-server.mjs}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET:?Generate .env with scripts/setup-server.mjs}
+      TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT:?Generate .env with scripts/setup-server.mjs}
+      JWT_SECRET: ${JWT_SECRET:?Generate .env with scripts/setup-server.mjs}
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY:?Generate .env with scripts/setup-server.mjs}
       DATABASE_CLIENT: postgres
       DATABASE_HOST: postgres
       DATABASE_PORT: 5432
       DATABASE_NAME: ${DATABASE_NAME:-strapi}
       DATABASE_USERNAME: ${DATABASE_USERNAME:-strapi}
-      DATABASE_PASSWORD: ${DATABASE_PASSWORD:-strapi-local-password}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD:?Generate .env with scripts/setup-server.mjs}
       DATABASE_SCHEMA: ${DATABASE_SCHEMA:-public}
       DATABASE_SSL: ${DATABASE_SSL:-false}
     ports:
@@ -73,7 +75,7 @@ services:
       PORT: 3000
       NUXT_STRAPI_URL: http://cms:1337
       NUXT_PUBLIC_STRAPI_URL: ${NUXT_PUBLIC_STRAPI_URL:-http://localhost:1337}
-      NUXT_PUBLIC_PREVIEW_MODE: ${NUXT_PUBLIC_PREVIEW_MODE:-false}
+      NUXT_INDEXING_ALLOWED: ${WEB_INDEXING_ALLOWED:-false}
     ports:
       - "${WEB_PORT:-3000}:3000"
     depends_on:

@@ -1,19 +1,10 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import { useSeoMeta } from '#imports'
-import { productionContactContent } from '~/constants/contact'
 import { previewContactContent } from '~/constants/mocks/contact'
-import { useDeploymentPreview } from '~/composables/useDeploymentPreview'
-import { selectDeploymentContent } from '~/utils/preview/selectDeploymentContent'
 
 defineOptions({ name: 'ContactsPage' })
 
-const isPreviewMode = useDeploymentPreview()
-const contactContent = computed(() => selectDeploymentContent({
-  previewMode: isPreviewMode.value,
-  production: productionContactContent,
-  preview: previewContactContent,
-}))
+const contactContent = previewContactContent
 
 useSeoMeta({
   title: 'Контакты',
