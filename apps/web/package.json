@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "nuxt build --dotenv ../../.env",
-    "dev": "nuxt dev --host 0.0.0.0 --dotenv ../../.env",
+    "dev": "nuxt dev --host 0.0.0.0 --port 3000 --dotenv ../../.env",
     "generate": "nuxt generate --dotenv ../../.env",
     "preview": "nuxt preview --dotenv ../../.env",
     "typecheck": "nuxt typecheck",

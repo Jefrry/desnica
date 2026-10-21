@@ -5,12 +5,13 @@ import {
   useHead,
   useRequestURL,
   useRoute,
+  useRuntimeConfig,
   useSeoMeta,
 } from '#imports'
 import { usePublicationSource } from '~/composables/publication/usePublicationSource'
 import { ERROR_CONTEXT, ERROR_MESSAGES, ERROR_STATUS } from '~/constants/errorConstants'
 import type { ArticleHeadingBlock } from '~/types/publication'
-import { adaptPlainTextArticleContent } from '~/utils/publication/adaptPlainTextArticleContent'
+import { renderPublicationMarkdown } from '~/utils/publication/renderPublicationMarkdown'
 import { parsePositivePage } from '~/utils/query/parsePositivePage'
 import { readQueryValue } from '~/utils/query/readQueryValue'
 
@@ -18,6 +19,7 @@ export async function usePublicationDetailPage() {
   const route = useRoute()
   const requestUrl = useRequestURL()
   const publicationSource = usePublicationSource()
+  const cmsBaseUrl = useRuntimeConfig().public.strapiUrl
   const slug = computed(() => String(route.params.slug))
   const fromPage = computed(() => parsePositivePage(route.query.fromPage) ?? 1)
   const fromPublication = computed(() => readQueryValue(route.query.from))
@@ -67,9 +69,12 @@ export async function usePublicationDetailPage() {
 
   const articleBlocks = computed(() => {
     const blocks = article.value?.body
-    return blocks?.length ? blocks : adaptPlainTextArticleContent(article.value?.content || '')
+    return blocks?.length ? blocks : []
   })
-  const tocItems = computed(() => articleBlocks.value
+  const articleMarkdown = computed(() => articleBlocks.value.length
+    ? undefined
+    : renderPublicationMarkdown(article.value?.content || '', cmsBaseUrl))
+  const tocItems = computed(() => articleMarkdown.value?.toc ?? articleBlocks.value
     .filter((block): block is ArticleHeadingBlock => block.type === 'heading')
     .map(block => ({ id: block.id, label: block.text })))
   const breadcrumbTitle = computed(() => {
@@ -84,6 +89,7 @@ export async function usePublicationDetailPage() {
     archiveTo,
     article,
     articleBlocks,
+    articleMarkdown,
     breadcrumbTitle,
     relatedArticles,
     tocItems,

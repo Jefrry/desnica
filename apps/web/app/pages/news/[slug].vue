@@ -9,6 +9,7 @@ const {
   archiveTo,
   article,
   articleBlocks,
+  articleMarkdown,
   breadcrumbTitle,
   relatedArticles,
   tocItems,
@@ -64,6 +65,7 @@ const {
           />
           <ArticleBody
             :blocks="articleBlocks"
+            :markdown="articleMarkdown"
             missing-media-label="Фотография будет добавлена"
             :class="tocItems.length ? 'w-full flex-1' : 'w-full desktop:ml-auto'"
           />

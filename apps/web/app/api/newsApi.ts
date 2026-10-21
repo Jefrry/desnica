@@ -9,7 +9,6 @@ import type {
 import { useRuntimeConfig } from '#imports'
 import { ApiError, baseApi } from '~/utils/api'
 import { ERROR_MESSAGES, ERROR_STATUS } from '~/constants/errorConstants'
-import { adaptPlainTextArticleContent } from '~/utils/publication/adaptPlainTextArticleContent'
 
 export class NewsNotFoundError extends ApiError {
   constructor(slug: string, options?: ErrorOptions) {
@@ -26,7 +25,6 @@ export function useNewsApi() {
     const { cover, ...publication } = article
     const formattedPublication = {
       ...publication,
-      body: adaptPlainTextArticleContent(article.content),
     }
 
     if (!cover) {
