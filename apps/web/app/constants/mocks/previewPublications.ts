@@ -42,6 +42,7 @@ export const previewPublications: Publication[] = previewPublicationSeeds.map((p
     createdAt: `${publication.publishedAt}T09:00:00.000Z`,
     updatedAt: `${publication.publishedAt}T09:00:00.000Z`,
     publishedAt: `${publication.publishedAt}T09:00:00.000Z`,
+    publicationDate: publication.publishedAt,
     media: {
       assetId: publication.assetId,
       alt: `Иллюстрация к публикации «${publication.title}»`,

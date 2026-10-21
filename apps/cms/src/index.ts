@@ -1,6 +1,8 @@
 import type { Core } from '@strapi/strapi';
 import { configureAuthorRole } from './roles/author';
 import { slugify } from './utils/slug';
+import { today } from './utils/publicationDate';
+import { backfillPublicationDates } from './publications/backfillPublicationDates';
 
 const PUBLIC_NEWS_ACTIONS = [
   'api::news.news.find',
@@ -30,6 +32,10 @@ export default {
         return next();
       }
 
+      if (data.publicationDate === undefined) {
+        data.publicationDate = today();
+      }
+
       if ((!data.slug || !String(data.slug).trim()) && typeof data.title === 'string') {
         data.slug = slugify(data.title);
       }
@@ -46,6 +52,7 @@ export default {
    * run jobs, or perform some special logic.
    */
   async bootstrap({ strapi }: { strapi: Core.Strapi }) {
+    await backfillPublicationDates(strapi);
     await configureAuthorRole(strapi);
 
     const role = await strapi.db.query('plugin::users-permissions.role').findOne({

@@ -12,6 +12,10 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "publicationDate": {
+      "type": "date",
+      "required": true
+    },
     "title": {
       "type": "string",
       "required": true,

@@ -9,6 +9,7 @@ export interface Publication {
   createdAt: string
   updatedAt: string
   publishedAt: string
+  publicationDate: string
   media?: PublicationMedia
   author?: string
   body?: readonly ArticleBlock[]

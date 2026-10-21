@@ -6,6 +6,7 @@ export const russianTranslations = {
   excerpt: 'Краткое описание',
   content: 'Содержимое',
   cover: 'Обложка',
+  publicationDate: 'Дата публикации',
 
   // Users & Permissions collection and fields.
   User: 'Пользователи',
@@ -34,6 +35,7 @@ export const russianTranslations = {
   'content-manager.content-types.api::news.news.excerpt': 'Краткое описание',
   'content-manager.content-types.api::news.news.content': 'Содержимое',
   'content-manager.content-types.api::news.news.cover': 'Обложка',
+  'content-manager.content-types.api::news.news.publicationDate': 'Дата публикации',
   'content-manager.content-types.plugin::users-permissions.user.username':
     'Имя пользователя',
   'content-manager.content-types.plugin::users-permissions.user.email':

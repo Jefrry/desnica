@@ -32,7 +32,7 @@ const {
         <header class="mx-auto max-w-[62rem]">
           <h1>{{ article.title }}</h1>
           <ArticleMeta
-            :published-at="article.publishedAt"
+            :publication-date="article.publicationDate"
             :author="article.author"
             class="mb-5"
           />
@@ -90,7 +90,7 @@ const {
               :title="relatedArticle.title"
               :slug="relatedArticle.slug"
               :excerpt="relatedArticle.excerpt || ''"
-              :published-at="relatedArticle.publishedAt"
+              :publication-date="relatedArticle.publicationDate"
               :media="relatedArticle.media || {
                 assetId: `publication-${relatedArticle.documentId}`,
                 alt: `Иллюстрация к публикации «${relatedArticle.title}»`,

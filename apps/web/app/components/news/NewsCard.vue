@@ -10,7 +10,7 @@ interface Props {
   title: string
   slug: string
   excerpt: string
-  publishedAt: string
+  publicationDate: string
   media: PublicationMedia
   to?: RouteLocationRaw
   missingLabel?: string
@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const articleTo = computed(() => props.to || `/news/${encodeURIComponent(props.slug)}`)
-const readableDate = computed(() => formatDate(props.publishedAt))
+const readableDate = computed(() => formatDate(props.publicationDate))
 </script>
 
 <template>
@@ -41,7 +41,7 @@ const readableDate = computed(() => formatDate(props.publishedAt))
 
     <div class="flex min-w-0 flex-col p-4">
       <time
-        :datetime="publishedAt"
+        :datetime="publicationDate"
         class="mb-2 text-caption text-muted"
       >
         {{ readableDate }}

@@ -47,7 +47,7 @@ export function useNewsApi() {
     const response = await baseApi<PublicationListResponse>({
       path: 'news',
       query: {
-        sort: 'publishedAt:desc',
+        sort: 'publicationDate:desc,documentId:asc',
         populate: 'cover',
         'pagination[page]': String(page),
         'pagination[pageSize]': String(pageSize),

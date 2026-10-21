@@ -194,7 +194,7 @@ function articleTo(slug: string, documentId: string) {
                   :title="publication.title"
                   :slug="publication.slug"
                   :excerpt="publication.excerpt || ''"
-                  :published-at="publication.publishedAt"
+                  :publication-date="publication.publicationDate"
                   :media="publication.media || {
                     assetId: `publication-${publication.documentId}`,
                     alt: `Иллюстрация к публикации «${publication.title}»`,

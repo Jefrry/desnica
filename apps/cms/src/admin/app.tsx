@@ -1,4 +1,6 @@
 import { russianTranslations } from './localization/ru';
+import type { StrapiApp } from '@strapi/strapi/admin';
+import { PublicationDateDefault } from './components/PublicationDateDefault';
 
 const ADMIN_LANGUAGE_STORAGE_KEY = 'strapi-admin-language';
 const DEFAULT_ADMIN_LOCALE = 'ru';
@@ -10,7 +12,11 @@ export default {
       [DEFAULT_ADMIN_LOCALE]: russianTranslations,
     },
   },
-  bootstrap() {
+  bootstrap(app: StrapiApp) {
+    app.getPlugin('content-manager').injectComponent('editView', 'right-links', {
+      name: 'publication-date-default',
+      Component: PublicationDateDefault,
+    });
     window.localStorage.setItem(ADMIN_LANGUAGE_STORAGE_KEY, DEFAULT_ADMIN_LOCALE);
     document.documentElement.lang = DEFAULT_ADMIN_LOCALE;
   },

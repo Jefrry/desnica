@@ -5,7 +5,7 @@ import { formatDate } from '~/utils/formatDate'
 defineOptions({ name: 'ArticleMeta' })
 
 interface Props {
-  publishedAt: string
+  publicationDate: string
   author?: string
 }
 
@@ -13,7 +13,7 @@ const props = withDefaults(defineProps<Props>(), {
   author: undefined,
 })
 
-const readableDate = computed(() => formatDate(props.publishedAt))
+const readableDate = computed(() => formatDate(props.publicationDate))
 </script>
 
 <template>
@@ -23,7 +23,7 @@ const readableDate = computed(() => formatDate(props.publishedAt))
         Дата публикации
       </dt>
       <dd class="m-0">
-        <time :datetime="publishedAt">{{ readableDate }}</time>
+        <time :datetime="publicationDate">{{ readableDate }}</time>
       </dd>
     </div>
 
