@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import { fileURLToPath } from 'node:url'
+import { readFile } from 'node:fs/promises'
 import { build } from 'esbuild'
 import { JSDOM } from 'jsdom'
 import { renderPublicationMarkdown } from '../app/utils/publication/renderPublicationMarkdown.ts'
@@ -144,7 +145,8 @@ test('publication HTML and navigation match in server and browser bundles', asyn
   const browser = new JSDOM('', { runScripts: 'outside-only', url: 'https://site.example.org' })
   try {
     browser.window.eval(bundle.outputFiles[0]!.text)
-    const content = '# Привет **мир**\n\n## Раздел\n\n![Фото](/uploads/photo.jpg)\n\n<svg><a href="javascript:alert(1)">опасно</a></svg>\n\nСноска[^a]\n\n[^a]: Текст'
+    const content = await readFile(new URL('./fixtures/publication-markdown.md', import.meta.url), 'utf8')
+      + '\n\n<svg><a href="javascript:alert(1)">опасно</a></svg>'
     browser.window.document.body.textContent = content
     const actual = browser.window.eval(`publicationMarkdown.renderPublicationMarkdown(document.body.textContent, 'https://cms.example.org')`)
     assert.deepEqual(JSON.parse(JSON.stringify(actual)), renderPublicationMarkdown(content, cmsBaseUrl))
