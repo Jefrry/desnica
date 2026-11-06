@@ -32,15 +32,20 @@ function resource_center_documents(): array
 
 function resource_center_selected_document(): string
 {
+    return resource_center_query_value('document', 'charter');
+}
+
+function resource_center_query_value(string $name, string $default): string
+{
     // Like readQueryValue in Nuxt, use the first value of a repeated parameter.
     foreach (explode('&', $_SERVER['QUERY_STRING'] ?? '') as $parameter) {
         $pair = explode('=', $parameter, 2);
-        if (urldecode($pair[0]) === 'document') {
+        if (urldecode($pair[0]) === $name) {
             $value = urldecode($pair[1] ?? '');
-            return $value !== '' ? $value : 'charter';
+            return $value !== '' ? $value : $default;
         }
     }
-    return 'charter';
+    return $default;
 }
 
 function resource_center_document_file(array $document): ?array
