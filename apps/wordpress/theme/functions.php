@@ -3,6 +3,7 @@ defined('ABSPATH') || exit;
 require_once __DIR__ . '/inc/navigation.php';
 require_once __DIR__ . '/inc/team.php';
 require_once __DIR__ . '/inc/information-pages.php';
+require_once __DIR__ . '/inc/documents.php';
 
 function resource_center_missing_photo(string $asset_id, string $alt, string $label = 'Фотография будет добавлена', string $class = ''): void
 {
@@ -45,6 +46,9 @@ add_action('wp_enqueue_scripts', static function () {
         }
     }
     wp_enqueue_script('resource-center-navigation', get_theme_file_uri('/assets/navigation.js'), array(), (string) filemtime(get_theme_file_path('/assets/navigation.js')), true);
+    if ($page && $page['template'] === 'documents') {
+        wp_enqueue_script('resource-center-documents', get_theme_file_uri('/assets/documents.js'), array(), (string) filemtime(get_theme_file_path('/assets/documents.js')), true);
+    }
 });
 
 add_filter('pre_get_document_title', static function (string $title): string {

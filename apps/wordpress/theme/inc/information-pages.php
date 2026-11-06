@@ -9,6 +9,7 @@ function resource_center_information_page(): ?array
     $pages = array(
         '/about' => array('template' => 'about', 'title' => 'О нас', 'description' => 'О Ресурсном центре, направлениях работы, команде и подходе к сотрудничеству.'),
         '/about/mission' => array('template' => 'mission', 'title' => 'Наша миссия', 'description' => 'Миссия и принципы Ресурсного центра.'),
+        '/about/documents' => array('template' => 'documents', 'title' => 'Уставные документы', 'description' => 'Документы Ресурсного центра и доступные текстовые версии.'),
         '/ngo' => array('template' => 'ngo', 'title' => 'Работа НКО', 'description' => 'Поддержка некоммерческих организаций, обмен опытом и совместные инициативы.'),
         '/contacts' => array('template' => 'contacts', 'title' => 'Контакты', 'description' => 'Контакты Ресурсного центра.'),
         '/legal' => array('template' => 'legal', 'title' => 'Правовая информация', 'description' => 'Правовая информация Ресурсного центра.'),
