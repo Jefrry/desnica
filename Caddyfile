@@ -1,8 +1,6 @@
-# Run Caddy on the server host, outside Docker.
-# If WEB_PORT differs from 3000, update the upstream below.
-anorc.ru {
+{$SITE_ADDRESS:anorc.ru} {
 	encode zstd gzip
-	reverse_proxy 127.0.0.1:3000
+	reverse_proxy web:3000
 }
 
 # Optional: create an A record for cms.anorc.ru before enabling this block.
@@ -10,5 +8,5 @@ anorc.ru {
 # see docs/hosting.md.
 # cms.anorc.ru {
 #	encode zstd gzip
-#	reverse_proxy 127.0.0.1:1337
+#	reverse_proxy cms:1337
 # }
