@@ -1,6 +1,7 @@
-{$SITE_ADDRESS:anorc.ru} {
+# Imported by the shared Caddy in jefrry; SITE_ADDRESS belongs to jefrry.
+anorc.ru {
 	encode zstd gzip
-	reverse_proxy web:3000
+	reverse_proxy desnica-web:3000
 }
 
 # Optional: create an A record for cms.anorc.ru before enabling this block.
@@ -8,5 +9,5 @@
 # see docs/hosting.md.
 # cms.anorc.ru {
 #	encode zstd gzip
-#	reverse_proxy cms:1337
+#	reverse_proxy desnica-cms:1337
 # }
