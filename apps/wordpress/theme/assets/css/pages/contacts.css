@@ -1,0 +1,18 @@
+.contacts-page { padding-bottom: 2.5rem; }
+.contacts-intro { margin-bottom: 2rem; }
+.contacts-intro .text-intro { margin-bottom: 0; }
+.contact-details { padding: 1.25rem; border: 1px solid #d8e2ec; border-radius: .5rem; }
+.contact-details h2 { margin-bottom: 1.25rem; }
+.contact-details address { font-style: normal; }
+.contact-details dl { margin: 0; }
+.contact-channel { padding-block: 1rem; border-bottom: 1px solid #d8e2ec; }
+.contact-channel:first-child { padding-top: 0; }
+.contact-channel:last-child { padding-bottom: 0; border-bottom: 0; }
+.contact-channel svg { width: 1.5rem; height: 1.5rem; margin-top: .125rem; color: #2455a6; }
+.contact-channel dt { display: grid; grid-template-columns: 2rem minmax(0,1fr); column-gap: .75rem; font-weight: 600; overflow-wrap: anywhere; }
+.contact-channel dd { margin: 0 0 0 2.75rem; color: #4b5e73; font-size: 1rem; line-height: 1.5rem; overflow-wrap: anywhere; }
+@media (min-width: 48rem) {
+ .contacts-page { padding-bottom: 4rem; }
+ .contacts-intro { margin-bottom: 2.5rem; }
+ .contact-details { padding: 1.5rem; }
+}

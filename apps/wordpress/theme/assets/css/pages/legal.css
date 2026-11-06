@@ -1,0 +1,5 @@
+.legal-page { padding-bottom: 2.5rem; }
+.legal-page section { scroll-margin-top: 7rem; }
+@media (min-width: 48rem) {
+ .legal-page { padding-bottom: 4rem; }
+}
