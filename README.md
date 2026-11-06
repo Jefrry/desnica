@@ -1,5 +1,9 @@
 # Desnica
 
+Новая PHP-версия на WordPress разрабатывается отдельно в `apps/wordpress`.
+Короткая инструкция для Podman: [apps/wordpress/README.md](apps/wordpress/README.md).
+Ниже описан сохранённый стек Nuxt/Strapi.
+
 Базовый pnpm-only monorepo с двумя приложениями:
 
 - `apps/web` — Nuxt 4 frontend;

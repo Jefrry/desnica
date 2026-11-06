@@ -1,0 +1,54 @@
+name: desnica-wordpress
+
+services:
+  mysql:
+    image: docker.io/library/mysql:8.0.40@sha256:d58ac93387f644e4e040c636b8f50494e78e5afc27ca0a87348b2f577da2b7ff
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: resource_center
+      MYSQL_USER: resource_center
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Run ./setup.ps1 first}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Run ./setup.ps1 first}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: [CMD-SHELL, 'MYSQL_PWD="$$MYSQL_PASSWORD" mysql --protocol=TCP -h 127.0.0.1 -u resource_center resource_center -e "SELECT 1"']
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+
+  wordpress:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: mysql:3306
+      WORDPRESS_DB_NAME: resource_center
+      WORDPRESS_DB_USER: resource_center
+      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD:?Run ./setup.ps1 first}
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_DEFAULT_THEME', 'resource-center');
+        define('WP_AUTO_UPDATE_CORE', false);
+        define('AUTOMATIC_UPDATER_DISABLED', true);
+        define('DISALLOW_FILE_MODS', true);
+        define('WP_ENVIRONMENT_TYPE', 'local');
+    volumes:
+      - wordpress_data:/var/www/html
+      - ./theme:/var/www/html/wp-content/themes/resource-center:ro
+      - ./mu-plugins:/var/www/html/wp-content/mu-plugins:ro
+      - ./checks:/opt/resource-center-checks:ro
+    depends_on:
+      mysql:
+        condition: service_healthy
+    healthcheck:
+      test: [CMD, php, -r, "exit(@file_get_contents('http://127.0.0.1/wp-login.php') === false ? 1 : 0);"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+
+volumes:
+  mysql_data:
+  wordpress_data:

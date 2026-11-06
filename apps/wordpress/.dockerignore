@@ -1,0 +1,4 @@
+*
+!Dockerfile
+!php-local.ini
+!apache-local.conf

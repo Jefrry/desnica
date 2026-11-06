@@ -1,0 +1,23 @@
+/*
+Theme Name: Ресурсный центр
+Description: Классическая PHP-тема Ресурсного центра.
+Version: 0.1.0
+Requires at least: 6.7
+Requires PHP: 8.0
+Text Domain: resource-center
+*/
+
+:root { color-scheme: light; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; color: #17283b; background: #fff; }
+* { box-sizing: border-box; }
+body { margin: 0; font-size: 1.125rem; line-height: 1.6; }
+a { color: #2455a6; }
+a:focus-visible { outline: 3px solid #c2410c; outline-offset: 5px; }
+.shell { width: min(100% - 2rem, 75rem); margin-inline: auto; }
+.site-header { padding-block: 1.5rem; border-bottom: 1px solid #d8e2ec; }
+.brand { color: #17283b; font-size: 1.5rem; font-weight: 700; text-decoration: none; }
+.intro { padding-block: clamp(3rem, 8vw, 7rem); background: #eaf2fa; }
+h1 { margin: 0 0 1.5rem; font-size: clamp(2rem, 6vw, 4rem); line-height: 1.15; overflow-wrap: anywhere; }
+p { max-width: 42rem; margin: 0; }
+.site-footer { padding-block: 2rem; color: #4b5e73; }
+.skip-link { position: absolute; top: 0; left: 1rem; transform: translateY(-150%); background: white; padding: .75rem; }
+.skip-link:focus { transform: translateY(0); }
