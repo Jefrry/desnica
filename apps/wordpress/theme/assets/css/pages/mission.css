@@ -1,0 +1,23 @@
+.principles { display: grid; list-style: none; gap: .75rem; margin: 0; padding: .75rem; border-radius: .5rem; background: #eaf2fa; }
+.principles li { display: grid; min-width: 0; grid-template-columns: 2.5rem minmax(0,1fr); gap: .25rem .75rem; padding: 1rem; border-radius: .5rem; background: white; }
+.principle-number { display: inline-grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: 50%; background: #2455a6; color: white; font-size: 1rem; font-weight: 700; }
+.principles h3 { margin: 0; align-self: center; }
+.principles p { grid-column: 2; margin: 0; color: #4b5e73; font-size: 1rem; line-height: 1.5rem; }
+.mission-quote { position: relative; margin-inline: 0; margin-bottom: 0; padding: 1.5rem 1.25rem; border-left: .25rem solid #2455a6; border-radius: .5rem; background: #eaf2fa; overflow: hidden; }
+.mission-quote > span { display: block; margin-bottom: .5rem; font-family: serif; font-size: 4.5rem; line-height: .6; color: rgb(36 85 166 / 20%); }
+.mission-quote p { margin: 0; font-size: 1.125rem; line-height: 1.75rem; font-weight: 600; }
+@media (min-width: 22.5rem) {
+ .principles { padding: 1rem; }
+ .mission-quote { padding-left: 5rem; }
+ .mission-quote > span { position: absolute; left: 1.25rem; top: 2rem; margin: 0; }
+}
+@media (min-width: 48rem) {
+ .principles { padding: 1.5rem; }
+ .principles li { grid-template-columns: 2.75rem minmax(10rem,.6fr) minmax(0,1.4fr); align-items: start; column-gap: 1.25rem; }
+ .principle-number { width: 2.75rem; height: 2.75rem; }
+ .principles p { grid-column: 3; }
+ .mission-quote { padding: 2rem 6rem; }
+ .mission-quote > span { left: 1.75rem; font-size: 6rem; }
+ .mission-quote p { font-size: 1.25rem; line-height: 1.875rem; }
+}
+@media (min-width: 75rem) { .mission-quote p { font-size: 1.375rem; line-height: 2rem; } }

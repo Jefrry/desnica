@@ -1,6 +1,8 @@
 <?php
 defined('ABSPATH') || exit;
 require_once __DIR__ . '/inc/navigation.php';
+require_once __DIR__ . '/inc/team.php';
+require_once __DIR__ . '/inc/information-pages.php';
 
 function resource_center_missing_photo(string $asset_id, string $alt, string $label = 'Фотография будет добавлена', string $class = ''): void
 {
@@ -35,10 +37,21 @@ add_action('wp_enqueue_scripts', static function () {
             (string) filemtime(get_theme_file_path('/assets/css/pages/home.css'))
         );
     }
+    $page = resource_center_information_page();
+    if ($page) {
+        foreach (array('information', $page['template']) as $stylesheet) {
+            $file = '/assets/css/pages/' . $stylesheet . '.css';
+            wp_enqueue_style('resource-center-' . $stylesheet, get_theme_file_uri($file), array('resource-center-common'), (string) filemtime(get_theme_file_path($file)));
+        }
+    }
     wp_enqueue_script('resource-center-navigation', get_theme_file_uri('/assets/navigation.js'), array(), (string) filemtime(get_theme_file_path('/assets/navigation.js')), true);
 });
 
 add_filter('pre_get_document_title', static function (string $title): string {
+    $page = resource_center_information_page();
+    if ($page) {
+        return $page['title'] . ' — Ресурсный центр';
+    }
     if (is_front_page()) {
         return 'Главная | Ресурсный центр';
     }
