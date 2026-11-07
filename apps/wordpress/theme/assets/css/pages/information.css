@@ -1,9 +1,5 @@
 /* Layout shared by the built-in information pages; loaded only on those routes. */
 .information-page { padding-top: 2.5rem; }
-.breadcrumbs { margin-bottom: 2rem; color: #4b5e73; font-size: 1rem; line-height: 1.5rem; }
-.breadcrumbs ol { display: flex; flex-wrap: wrap; align-items: baseline; list-style: none; gap: .25rem .5rem; margin: 0; padding: 0; }
-.breadcrumbs li { display: flex; min-width: 0; align-items: baseline; gap: .5rem; overflow-wrap: anywhere; }
-.breadcrumbs [aria-current] { font-weight: 600; color: #17283b; }
 .page-intro { display: grid; align-items: start; gap: 2rem; }
 .page-intro > * { min-width: 0; }
 .page-intro .text-intro { max-width: 42rem; margin-bottom: 1rem; }

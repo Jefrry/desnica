@@ -38,6 +38,14 @@ services:
       - wordpress_data:/var/www/html
       - ./theme:/var/www/html/wp-content/themes/resource-center:ro
       - ./mu-plugins:/var/www/html/wp-content/mu-plugins:ro
+      - ./plugins/resource-center-publications:/var/www/html/wp-content/plugins/resource-center-publications:ro
+      - type: bind
+        # Keep the version in sync with setup.ps1.
+        source: ./.dependencies/markup-markdown-4.0.2/markup-markdown
+        target: /var/www/html/wp-content/plugins/markup-markdown
+        read_only: true
+        bind:
+          create_host_path: false
       - ./checks:/opt/resource-center-checks:ro
     depends_on:
       mysql:

@@ -16,6 +16,7 @@ build/
 
 # Local data and uploads
 .tmp/
+apps/wordpress/.dependencies/
 *.db
 *.db-journal
 *.sqlite

@@ -26,6 +26,7 @@ function resource_center_missing_photo(string $asset_id, string $alt, string $la
 add_action('after_setup_theme', static function () {
     add_theme_support('title-tag');
     add_theme_support('html5', array('style', 'script'));
+    add_theme_support('post-thumbnails', array('post'));
 });
 
 add_action('wp_enqueue_scripts', static function () {
@@ -42,6 +43,10 @@ add_action('wp_enqueue_scripts', static function () {
             array('resource-center-common'),
             (string) filemtime(get_theme_file_path('/assets/css/pages/home.css'))
         );
+    }
+    if (is_singular('post')) {
+        $file = '/assets/css/pages/publication.css';
+        wp_enqueue_style('resource-center-publication', get_theme_file_uri($file), array('resource-center-common'), (string) filemtime(get_theme_file_path($file)));
     }
     $page = resource_center_information_page();
     if ($page) {

@@ -1,0 +1,53 @@
+.publication {
+  max-width: 62rem;
+  margin: 0 auto 4rem;
+  overflow-wrap: anywhere;
+}
+
+.publication-page {
+  padding-top: 1.5rem;
+}
+
+.publication-date {
+  margin-block: 0 1.25rem;
+}
+
+.publication-lead {
+  max-width: 52rem;
+  margin-block: 0 2rem;
+  font-size: 1.25rem;
+}
+
+.publication-cover {
+  margin: 0 0 2rem;
+}
+
+.publication-cover img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.publication-body {
+  margin-top: 2rem;
+}
+
+.publication-body img {
+  max-width: 100%;
+  height: auto;
+}
+
+.publication-body pre,
+.publication-body table {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.publication-body table {
+  display: block;
+}
+
+.publication-body a {
+  text-decoration: underline;
+}
