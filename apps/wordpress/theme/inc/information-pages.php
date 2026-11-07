@@ -13,6 +13,8 @@ function resource_center_information_page(): ?array
         '/about/reports' => array('template' => 'reports', 'title' => 'Годовая отчётность', 'description' => 'Годовые отчёты Ресурсного центра и доступные текстовые версии.'),
         '/services' => array('template' => 'services', 'title' => 'Услуги', 'description' => 'Услуги Ресурсного центра по созданию доступной среды.'),
         '/services/local-documents' => array('template' => 'local-documents', 'stylesheet' => 'services', 'title' => 'Разработка локальных документов', 'description' => 'Подготовка локальных документов для инклюзивного оказания услуг.'),
+        '/services/odi' => array('template' => 'odi', 'stylesheet' => 'services', 'title' => 'Проектирование 10 раздела ОДИ', 'description' => 'Проектные решения по обеспечению доступности зданий и помещений для людей с инвалидностью.'),
+        '/services/project-review' => array('template' => 'project-review', 'stylesheet' => 'services', 'title' => 'Согласование проектов', 'description' => 'Экспертное обсуждение проектных решений с точки зрения доступности.'),
         '/ngo' => array('template' => 'ngo', 'title' => 'Работа НКО', 'description' => 'Поддержка некоммерческих организаций, обмен опытом и совместные инициативы.'),
         '/contacts' => array('template' => 'contacts', 'title' => 'Контакты', 'description' => 'Контакты Ресурсного центра.'),
         '/legal' => array('template' => 'legal', 'title' => 'Правовая информация', 'description' => 'Правовая информация Ресурсного центра.'),

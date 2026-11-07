@@ -1,16 +1,13 @@
 <?php defined('ABSPATH') || exit; get_header(); ?>
 <div class="shell information-page">
     <?php resource_center_breadcrumbs('Локальные документы', array(array('Услуги', '/services'))); ?>
-    <section class="page-intro" aria-labelledby="page-title">
-        <div>
-            <h1 id="page-title">Разработка локальных документов</h1>
-            <p class="text-intro">Помогаем организовать инклюзивное оказание услуг с учётом потребностей людей с инвалидностью. Подготовим понятные документы для работы команды.</p>
-            <div class="actions">
-                <a class="action" href="<?php echo esc_url(home_url('/contacts')); ?>">Обсудить задачу</a>
-            </div>
-        </div>
-        <?php resource_center_missing_photo('planning-session', 'Специалисты обсуждают структуру документов', 'Фотография будет добавлена', 'intro-photo'); ?>
-    </section>
+    <?php resource_center_service_intro(
+        'Разработка локальных документов',
+        'Помогаем организовать инклюзивное оказание услуг с учётом потребностей людей с инвалидностью. Подготовим понятные документы для работы команды.',
+        'Обсудить задачу',
+        'planning-session',
+        'Специалисты обсуждают структуру документов'
+    ); ?>
     <section class="content-section" aria-labelledby="local-documents-audience-heading">
         <h2 id="local-documents-audience-heading">Кому подойдёт</h2>
         <div class="service-note service-audience">
