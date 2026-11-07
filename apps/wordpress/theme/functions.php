@@ -7,7 +7,7 @@ require_once __DIR__ . '/inc/information-pages.php';
 require_once __DIR__ . '/inc/documents.php';
 require_once __DIR__ . '/inc/reports.php';
 
-function resource_center_missing_photo(string $asset_id, string $alt, string $label = 'Фотография будет добавлена', string $class = ''): void
+function resource_center_missing_photo(string $asset_id, string $alt, string $label = 'Фотография будет добавлена', string $class = '', string $caption = ''): void
 {
     ?>
     <figure class="missing-photo <?php echo esc_attr($class); ?>" data-asset-id="<?php echo esc_attr($asset_id); ?>">
@@ -16,6 +16,9 @@ function resource_center_missing_photo(string $asset_id, string $alt, string $la
             <strong aria-hidden="true"><?php echo esc_html($label); ?></strong>
             <span aria-hidden="true"><?php echo esc_html($alt); ?></span>
         </div>
+        <?php if ($caption !== '') : ?>
+            <figcaption><?php echo esc_html($caption); ?></figcaption>
+        <?php endif; ?>
     </figure>
     <?php
 }

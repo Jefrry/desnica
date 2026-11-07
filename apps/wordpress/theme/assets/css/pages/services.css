@@ -48,6 +48,8 @@
 .service-faq summary svg { flex-shrink: 0; color: #2455a6; }
 .service-faq details[open] summary svg { transform: rotate(180deg); }
 .service-faq p { margin: 0; padding: 1rem; color: #4b5e73; font-size: 1rem; line-height: 1.5rem; }
+.passport-purpose-copy { max-width: 68rem; }
+.service-grid.passport-materials { margin-top: 3rem; gap: 2.5rem; }
 @media (min-width: 22.5rem) {
     .service-card .missing-photo { width: 8rem; }
 }
@@ -64,4 +66,5 @@
     .service-audience { padding: 1.5rem; }
     .service-purpose { padding: 2rem; }
     .service-purpose-copy, .service-media-grid { gap: 2rem; }
+    .service-grid.passport-materials { margin-top: 4rem; gap: 2rem; }
 }
