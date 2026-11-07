@@ -6,7 +6,7 @@ $selected_report = $reports[$selected_year] ?? null;
 get_header();
 ?>
 <div class="shell information-page reports-page" data-report-page>
-    <?php resource_center_breadcrumbs('Годовая отчётность', true); ?>
+    <?php resource_center_breadcrumbs('Годовая отчётность', array(array('О нас', '/about'))); ?>
     <section class="page-intro" aria-labelledby="page-title">
         <div><h1 id="page-title">Годовая отчётность</h1><p class="text-intro">Рассказываем о работе Ресурсного центра открыто и понятно.</p></div>
         <?php resource_center_missing_photo('team-meeting', 'Команда Ресурсного центра обсуждает работу', 'Фотография будет добавлена', 'intro-photo'); ?>

@@ -1,6 +1,7 @@
 <?php
 defined('ABSPATH') || exit;
 require_once __DIR__ . '/inc/navigation.php';
+require_once __DIR__ . '/inc/services.php';
 require_once __DIR__ . '/inc/team.php';
 require_once __DIR__ . '/inc/information-pages.php';
 require_once __DIR__ . '/inc/documents.php';
@@ -41,7 +42,7 @@ add_action('wp_enqueue_scripts', static function () {
     }
     $page = resource_center_information_page();
     if ($page) {
-        foreach (array('information', $page['template']) as $stylesheet) {
+        foreach (array('information', $page['stylesheet'] ?? $page['template']) as $stylesheet) {
             $file = '/assets/css/pages/' . $stylesheet . '.css';
             wp_enqueue_style('resource-center-' . $stylesheet, get_theme_file_uri($file), array('resource-center-common'), (string) filemtime(get_theme_file_path($file)));
         }

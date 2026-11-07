@@ -9,11 +9,9 @@ function resource_center_navigation_items(): array
             array('Уставные документы', '/about/documents'),
             array('Годовая отчётность', '/about/reports'),
         )),
-        array('services', 'Услуги', '/services', array(
-            array('Разработка локальных документов', '/services/local-documents'),
-            array('Проектирование 10 раздела ОДИ', '/services/odi'),
-            array('Согласование проектов', '/services/project-review'),
-            array('Паспорт доступности', '/services/accessibility-passport'),
+        array('services', 'Услуги', '/services', array_map(
+            static fn(array $service): array => array($service['title'], $service['path']),
+            resource_center_services()
         )),
         array('training', 'Обучение', '/training', array()),
         array('news', 'Новости', '/news', array()),

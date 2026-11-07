@@ -11,6 +11,8 @@ function resource_center_information_page(): ?array
         '/about/mission' => array('template' => 'mission', 'title' => 'Наша миссия', 'description' => 'Миссия и принципы Ресурсного центра.'),
         '/about/documents' => array('template' => 'documents', 'title' => 'Уставные документы', 'description' => 'Документы Ресурсного центра и доступные текстовые версии.'),
         '/about/reports' => array('template' => 'reports', 'title' => 'Годовая отчётность', 'description' => 'Годовые отчёты Ресурсного центра и доступные текстовые версии.'),
+        '/services' => array('template' => 'services', 'title' => 'Услуги', 'description' => 'Услуги Ресурсного центра по созданию доступной среды.'),
+        '/services/local-documents' => array('template' => 'local-documents', 'stylesheet' => 'services', 'title' => 'Разработка локальных документов', 'description' => 'Подготовка локальных документов для инклюзивного оказания услуг.'),
         '/ngo' => array('template' => 'ngo', 'title' => 'Работа НКО', 'description' => 'Поддержка некоммерческих организаций, обмен опытом и совместные инициативы.'),
         '/contacts' => array('template' => 'contacts', 'title' => 'Контакты', 'description' => 'Контакты Ресурсного центра.'),
         '/legal' => array('template' => 'legal', 'title' => 'Правовая информация', 'description' => 'Правовая информация Ресурсного центра.'),
@@ -55,12 +57,14 @@ add_action('wp_head', static function () {
     }
 });
 
-function resource_center_breadcrumbs(string $title, bool $mission = false): void
+function resource_center_breadcrumbs(string $title, array $parents = array()): void
 {
     ?>
     <nav class="breadcrumbs" aria-label="Хлебные крошки"><ol>
         <li><a href="<?php echo esc_url(home_url('/')); ?>">Главная</a><span aria-hidden="true">›</span></li>
-        <?php if ($mission) : ?><li><a href="<?php echo esc_url(home_url('/about')); ?>">О нас</a><span aria-hidden="true">›</span></li><?php endif; ?>
+        <?php foreach ($parents as [$label, $path]) : ?>
+            <li><a href="<?php echo esc_url(home_url($path)); ?>"><?php echo esc_html($label); ?></a><span aria-hidden="true">›</span></li>
+        <?php endforeach; ?>
         <li><span aria-current="page"><?php echo esc_html($title); ?></span></li>
     </ol></nav>
     <?php

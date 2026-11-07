@@ -1,6 +1,6 @@
 <?php defined('ABSPATH') || exit; get_header(); ?>
 <div class="shell information-page">
-    <?php resource_center_breadcrumbs('Наша миссия', true); ?>
+    <?php resource_center_breadcrumbs('Наша миссия', array(array('О нас', '/about'))); ?>
     <section class="page-intro" aria-labelledby="page-title">
         <div>
             <h1 id="page-title">Наша миссия</h1>

@@ -5,7 +5,7 @@ $selected_id = resource_center_selected_document();
 get_header();
 ?>
 <div class="shell information-page documents-page" data-document-page>
-    <?php resource_center_breadcrumbs('Уставные документы', true); ?>
+    <?php resource_center_breadcrumbs('Уставные документы', array(array('О нас', '/about'))); ?>
     <section id="documents-intro" class="page-intro" aria-labelledby="page-title">
         <div><h1 id="page-title">Уставные документы</h1><p class="text-intro">Мы действуем открыто и прозрачно. Здесь собраны документы Ресурсного центра для свободного ознакомления.</p></div>
         <?php resource_center_missing_photo('document-folder', 'Папка с документами Ресурсного центра', 'Фотография будет добавлена', 'intro-photo'); ?>
