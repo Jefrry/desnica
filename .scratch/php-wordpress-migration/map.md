@@ -25,7 +25,7 @@
 | [08: Проектирование ОДИ и согласование проектов](issues/08-odi-and-project-review.md) | 07 | ready-for-agent |
 | [09: Паспорт доступности и обучение](issues/09-accessibility-passport-and-training.md) | 07 | ready-for-agent |
 | [10: Первая публикация через Markdown-редактор](issues/10-author-markdown-publication.md) | 02 | ready-for-agent |
-| [11: Расширенный Markdown и оглавление статьи](issues/11-extended-markdown-and-toc.md) | 10 | ready-for-agent |
+| [11: Расширенный Markdown и оглавление статьи](issues/11-extended-markdown-and-toc.md) | 10 | claimed |
 | [12: Архив публикаций и возвращение к карточке](issues/12-publication-archive-and-return.md) | 10 | ready-for-agent |
 | [13: Готовый комплект для FTP и локальная приёмка](issues/13-ftp-package-and-public-site-acceptance.md) | 03, 04, 05, 06, 07, 08, 09, 11, 12 | ready-for-agent |
 | [14: Установка и проверка на Timeweb](issues/14-timeweb-installation-and-verification.md) | 13 | ready-for-agent |
@@ -39,6 +39,8 @@
 Статус ready-for-agent означает готовность описания к реализации; начать задачу можно только после выполнения блокирующих задач и внешних предпосылок. При недоступном Timeweb задача 14 остаётся незавершённой.
 
 ## Decisions-so-far
+
+- 7 ноября 2026: по прямому указанию пользователя начат [пункт 11](issues/11-extended-markdown-and-toc.md). Добавлены серверный Markdown и оглавление, локальная подсветка и проверки. Сквозная приёмка ожидает работающего WordPress и Podman.
 
 - 7 ноября 2026: [задача 07](issues/07-services-and-local-documents.md) реализована по прямому указанию пользователя. Перенесены каталог четырёх услуг, страница локальных документов и FAQ. 19 существующих тестов, ESLint, проверки типов и разбор CSS прошли. Приёмка в работающем WordPress ожидается из-за недоступности локального сервера.
 

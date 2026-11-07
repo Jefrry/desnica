@@ -1,6 +1,6 @@
 <?php
 defined('ABSPATH') || exit;
-if (!function_exists('resource_center_publication_html') || !have_posts()) {
+if (!function_exists('resource_center_render_publication_markdown') || !have_posts()) {
     require __DIR__ . '/index.php';
     return;
 }
@@ -10,10 +10,22 @@ $title = get_the_title($publication);
 $date = resource_center_publication_date($publication);
 $cover = (int) get_post_thumbnail_id($publication);
 $is_protected = post_password_required($publication);
-$body = $is_protected ? get_the_password_form($publication) : resource_center_publication_html($publication);
+$body = $is_protected
+    ? array('html' => get_the_password_form($publication), 'toc' => array())
+    : resource_center_render_publication_markdown($publication->post_content);
 if ($body === null) {
     status_header(503);
     nocache_headers();
+}
+$code_script = '/assets/dist/publication-code.js';
+if (!$is_protected && str_contains($body['html'] ?? '', 'class="language-') && is_file(get_theme_file_path($code_script))) {
+    wp_enqueue_script(
+        'resource-center-publication-code',
+        get_theme_file_uri($code_script),
+        array(),
+        (string) filemtime(get_theme_file_path($code_script)),
+        true
+    );
 }
 get_header();
 ?>
@@ -33,8 +45,22 @@ get_header();
                 <figure class="publication-cover"><?php echo wp_get_attachment_image($cover, 'large'); ?></figure>
             <?php endif; ?>
         </header>
-        <div class="publication-body">
-            <?php echo $body ?? '<p>Содержимое публикации временно недоступно.</p>'; ?>
+        <div class="publication-content">
+            <?php if (!empty($body['toc'])) : ?>
+                <nav class="publication-toc" aria-label="В этой статье">
+                    <p><strong>В этой статье</strong></p>
+                    <ul>
+                        <?php foreach ($body['toc'] as $entry) : ?>
+                            <li><a href="#<?php echo esc_attr(rawurlencode($entry['id'])); ?>"><?php
+                                echo esc_html($entry['label']);
+                            ?></a></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </nav>
+            <?php endif; ?>
+            <div class="publication-body">
+                <?php echo $body['html'] ?? '<p>Содержимое публикации временно недоступно.</p>'; ?>
+            </div>
         </div>
     </article>
 </div>

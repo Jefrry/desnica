@@ -29,8 +29,57 @@
   object-fit: cover;
 }
 
+.publication-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.publication-toc {
+  border-radius: .5rem;
+  padding: 1rem;
+  background: #eaf2fa;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.publication-toc p {
+  margin-bottom: .75rem;
+}
+
+.publication-toc li + li {
+  margin-top: .5rem;
+}
+
 .publication-body {
-  margin-top: 2rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.publication-body :is(h2, h3, h4, h5, h6) {
+  margin-block: 2.5rem 1rem;
+}
+
+.publication-body > :first-child {
+  margin-top: 0;
+}
+
+@media (min-width: 64rem) {
+  .publication-content {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 2.5rem;
+  }
+
+  .publication-toc {
+    position: sticky;
+    top: 7rem;
+    width: 16rem;
+    flex: none;
+    max-height: calc(100vh - 8rem);
+    overflow: auto;
+  }
 }
 
 .publication-body img {
@@ -39,13 +88,80 @@
 }
 
 .publication-body pre,
-.publication-body table {
+.publication-table-scroll {
   max-width: 100%;
   overflow-x: auto;
+  margin-block: 0 1.5rem;
 }
 
 .publication-body table {
-  display: block;
+  border-collapse: collapse;
+  font-size: 1rem;
+}
+
+.publication-body :is(th, td) {
+  min-width: 7rem;
+  border: 1px solid #a8b9c9;
+  padding: .75rem 1rem;
+}
+
+.publication-body th {
+  background: #eaf2fa;
+}
+
+.publication-body pre {
+  border: 1px solid #d8e2ec;
+  border-radius: .5rem;
+  padding: 1rem;
+  background: #f5f7fa;
+  overflow-wrap: normal;
+}
+
+.publication-body :is(.warning, .tip, blockquote) {
+  margin: 1.5rem 0;
+  border-inline-start: 4px solid #2455a6;
+  padding: 1rem 1.25rem;
+  background: #eaf2fa;
+}
+
+.publication-body .warning {
+  border-color: #c2410c;
+  background: #fff8eb;
+}
+
+.publication-body :is(.warning, .tip, blockquote) > :last-child {
+  margin-bottom: 0;
+}
+
+.publication-body dt {
+  font-weight: 700;
+}
+
+.publication-body .footnotes {
+  color: #4b5e73;
+  font-size: 1rem;
+}
+
+.publication-body mark {
+  background: #fff0b3;
+  color: #17283b;
+}
+
+.publication-body :is(.hljs-keyword, .hljs-selector-tag, .hljs-built_in, .hljs-type) {
+  color: #2455a6;
+}
+
+.publication-body :is(.hljs-string, .hljs-attr, .hljs-title) {
+  color: #216238;
+}
+
+.publication-body :is(.hljs-number, .hljs-literal, .hljs-symbol) {
+  color: #9e2e29;
+}
+
+.publication-body :is(.hljs-comment, .hljs-quote) {
+  color: #4b5e73;
+  font-style: italic;
 }
 
 .publication-body a {
