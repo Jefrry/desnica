@@ -6,6 +6,7 @@ require_once __DIR__ . '/inc/team.php';
 require_once __DIR__ . '/inc/information-pages.php';
 require_once __DIR__ . '/inc/documents.php';
 require_once __DIR__ . '/inc/reports.php';
+require_once __DIR__ . '/inc/publications.php';
 
 function resource_center_missing_photo(string $asset_id, string $alt, string $label = 'Фотография будет добавлена', string $class = '', string $caption = ''): void
 {
@@ -43,6 +44,8 @@ add_action('wp_enqueue_scripts', static function () {
             array('resource-center-common'),
             (string) filemtime(get_theme_file_path('/assets/css/pages/home.css'))
         );
+        $file = '/assets/css/pages/news.css';
+        wp_enqueue_style('resource-center-news', get_theme_file_uri($file), array('resource-center-common'), (string) filemtime(get_theme_file_path($file)));
     }
     if (is_singular('post')) {
         $file = '/assets/css/pages/publication.css';
@@ -61,6 +64,10 @@ add_action('wp_enqueue_scripts', static function () {
     }
     if ($page && $page['template'] === 'reports') {
         wp_enqueue_script('resource-center-reports', get_theme_file_uri('/assets/reports.js'), array(), (string) filemtime(get_theme_file_path('/assets/reports.js')), true);
+    }
+    if ($page && $page['template'] === 'news') {
+        $file = '/assets/publication-archive.js';
+        wp_enqueue_script('resource-center-publication-archive', get_theme_file_uri($file), array(), (string) filemtime(get_theme_file_path($file)), true);
     }
 });
 

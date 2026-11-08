@@ -10,5 +10,6 @@
 defined('ABSPATH') || exit;
 
 require_once __DIR__ . '/editor.php';
+require_once __DIR__ . '/collection.php';
 require_once __DIR__ . '/routes.php';
 require_once __DIR__ . '/markdown.php';

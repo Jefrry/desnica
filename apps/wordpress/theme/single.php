@@ -8,6 +8,7 @@ the_post();
 $publication = get_post();
 $title = get_the_title($publication);
 $date = resource_center_publication_date($publication);
+$archive_path = resource_center_publication_return_path($publication->ID);
 $cover = (int) get_post_thumbnail_id($publication);
 $is_protected = post_password_required($publication);
 $body = $is_protected
@@ -30,14 +31,11 @@ if (!$is_protected && str_contains($body['html'] ?? '', 'class="language-') && i
 get_header();
 ?>
 <div class="shell publication-page">
-    <?php resource_center_breadcrumbs($title); ?>
+    <?php resource_center_breadcrumbs($title, array(array('Новости', $archive_path))); ?>
     <article class="publication">
         <header>
             <h1><?php echo esc_html($title); ?></h1>
-            <p class="publication-date"><time datetime="<?php echo esc_attr($date); ?>"><?php
-                $local_date = DateTimeImmutable::createFromFormat('!Y-m-d', $date, wp_timezone());
-                echo esc_html($local_date ? $local_date->format('d.m.Y') : $date);
-            ?></time></p>
+            <p class="publication-date"><?php resource_center_publication_time($date); ?></p>
             <?php if (!$is_protected && $publication->post_excerpt !== '') : ?>
                 <p class="publication-lead"><?php echo esc_html($publication->post_excerpt); ?></p>
             <?php endif; ?>
@@ -62,6 +60,7 @@ get_header();
                 <?php echo $body['html'] ?? '<p>Содержимое публикации временно недоступно.</p>'; ?>
             </div>
         </div>
+        <p class="publication-return"><a class="action secondary" href="<?php echo esc_url(home_url($archive_path)); ?>">Все новости</a></p>
     </article>
 </div>
 <?php get_footer(); ?>

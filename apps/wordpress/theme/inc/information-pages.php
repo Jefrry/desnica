@@ -20,6 +20,7 @@ function resource_center_information_page(): ?array
         '/ngo' => array('template' => 'ngo', 'title' => 'Работа НКО', 'description' => 'Поддержка некоммерческих организаций, обмен опытом и совместные инициативы.'),
         '/contacts' => array('template' => 'contacts', 'title' => 'Контакты', 'description' => 'Контакты Ресурсного центра.'),
         '/legal' => array('template' => 'legal', 'title' => 'Правовая информация', 'description' => 'Правовая информация Ресурсного центра.'),
+        '/news' => array('template' => 'news', 'title' => 'Новости', 'description' => 'События Ресурсного центра, полезные материалы и истории изменений.'),
     );
     foreach ($pages as $route => $page) {
         if (untrailingslashit((string) $path) === $home_path . $route) {
@@ -57,7 +58,9 @@ add_action('wp_head', static function () {
     $page = resource_center_information_page();
     if ($page) {
         echo '<meta name="description" content="' . esc_attr($page['description']) . '">' . "\n";
-        echo '<link rel="canonical" href="' . esc_url(home_url($page['path'])) . '">' . "\n";
+        if ($page['template'] !== 'news') {
+            echo '<link rel="canonical" href="' . esc_url(home_url($page['path'])) . '">' . "\n";
+        }
     }
 });
 

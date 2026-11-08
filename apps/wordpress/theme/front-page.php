@@ -1,4 +1,12 @@
-<?php defined('ABSPATH') || exit; get_header(); ?>
+<?php
+defined('ABSPATH') || exit;
+$latest_publications = function_exists('resource_center_publications') ? resource_center_publications(3) : null;
+if ($latest_publications === null) {
+    status_header(500);
+    nocache_headers();
+}
+get_header();
+?>
 <div class="shell hero-space">
     <section class="hero" aria-labelledby="home-title">
         <div>
@@ -33,8 +41,13 @@
 <section id="latest-publications" aria-labelledby="latest-publications-title"><div class="shell section-space">
     <h2 id="latest-publications-title">Последние новости</h2>
     <div class="news-link"><a href="<?php echo esc_url(home_url('/news')); ?>">Все новости <span aria-hidden="true">→</span></a></div>
-    <?php // Published records will be connected in task 12; no seed or mock articles. ?>
-    <div class="publication-state"><p>Публикаций пока нет.</p></div>
+    <?php if ($latest_publications === null) : ?>
+        <?php resource_center_publication_state('Не удалось загрузить новости. Попробуйте ещё раз.', home_url('/'), 'Попробовать снова'); ?>
+    <?php elseif (!$latest_publications) : ?>
+        <?php resource_center_publication_state('Публикаций пока нет.'); ?>
+    <?php else : ?>
+        <?php resource_center_publication_cards($latest_publications); ?>
+    <?php endif; ?>
 </div></section>
 <section id="home-contact" class="accent" aria-labelledby="home-contact-title"><div class="shell contact-grid">
     <div><h2 id="home-contact-title">Давайте обсудим вашу задачу</h2><p>Ответим на вопросы, подскажем решения и поможем найти подходящий формат поддержки.</p></div>

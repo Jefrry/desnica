@@ -8,7 +8,6 @@
 .about-links { display: flex; flex-wrap: wrap; align-items: flex-start; gap: .5rem 1.5rem; }
 .about-links a, .news-link a { display: inline-flex; min-height: 3rem; align-items: center; gap: .5rem; font-size: 1rem; line-height: 1.5rem; font-weight: 600; }
 .news-link { display: flex; justify-content: flex-end; margin-bottom: 1.5rem; }
-.publication-state { min-height: 16rem; padding-block: 2rem; color: #4b5e73; }
 .contact-grid { display: grid; align-items: center; gap: 1.5rem; padding-block: 1.5rem; }
 .contact-grid h2 { font-size: 1.25rem; line-height: 1.625rem; margin-bottom: .5rem; }
 .contact-grid p { max-width: 42rem; font-size: 1rem; line-height: 1.5rem; color: #4b5e73; margin: 0; }
