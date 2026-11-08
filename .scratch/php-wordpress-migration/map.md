@@ -28,7 +28,7 @@
 | [11: Расширенный Markdown и оглавление статьи](issues/11-extended-markdown-and-toc.md) | 10 | claimed |
 | [12: Архив публикаций и возвращение к карточке](issues/12-publication-archive-and-return.md) | 10 | ready-for-human |
 | [13: Готовый комплект для FTP и локальная приёмка](issues/13-ftp-package-and-public-site-acceptance.md) | 03, 04, 05, 06, 07, 08, 09, 11, 12 | ready-for-human |
-| [14: Установка и проверка на Timeweb](issues/14-timeweb-installation-and-verification.md) | 13 | ready-for-agent |
+| [14: Установка и проверка на Timeweb](issues/14-timeweb-installation-and-verification.md) | 13 | needs-info |
 
 ## Порядок выполнения
 
@@ -39,6 +39,8 @@
 Статус ready-for-agent означает готовность описания к реализации; начать задачу можно только после выполнения блокирующих задач и внешних предпосылок. При недоступном Timeweb задача 14 остаётся незавершённой.
 
 ## Decisions-so-far
+
+- 8 ноября 2026: для [пункта 14](issues/14-timeweb-installation-and-verification.md) подготовлены инструкция и [протокол](../../apps/wordpress/checks/verification-14.md). Установка ожидает доступа к Timeweb и завершения пункта 13.
 
 - 8 ноября 2026: для [пункта 13](issues/13-ftp-package-and-public-site-acceptance.md) добавлены сборка FTP-комплекта, инструкция и изолированная приёмка на Podman. Тестовая сборка прошла. Сборка с официальным редактором и сквозная приёмка ожидают доступа к каталогу WordPress и Podman. [Протокол](../../apps/wordpress/checks/verification-13.md).
 

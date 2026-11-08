@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin Name: Resource Center — Local Noindex
- * Description: Keeps the local WordPress installation out of search indexes.
+ * Plugin Name: Запрет индексации Ресурсного центра
+ * Description: Скрывает сайт от индексации поисковыми системами.
  */
 
 defined('ABSPATH') || exit;
